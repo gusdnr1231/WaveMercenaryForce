@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f63c8ad2b336c43967dc9e20699eda, type: 3}
+  m_Name: Test_CharacterStat
+  m_EditorClassIdentifier: 
+  CharacterStatValues:
+  - MaxHp: 100
+    Strength: 5
+    Magic: 10
+    Defense: 14
+    MagicResistance: 14
+    AttackRange: 5
+    AttackSpeed: 3
+    MaxTarget: 1
+    MoveSpeed: 5
+  - MaxHp: 200
+    Strength: 30
+    Magic: 30
+    Defense: 14
+    MagicResistance: 14
+    AttackRange: 5
+    AttackSpeed: 3
+    MaxTarget: 1
+    MoveSpeed: 5
+  - MaxHp: 200
+    Strength: 60
+    Magic: 60
+    Defense: 14
+    MagicResistance: 14
+    AttackRange: 5
+    AttackSpeed: 3
+    MaxTarget: 2
+    MoveSpeed: 5
+  MaxHp:
+    baseValue: 0
+    statType: 0
+  Strength:
+    baseValue: 0
+    statType: 0
+  Magic:
+    baseValue: 0
+    statType: 0
+  Defense:
+    baseValue: 0
+    statType: 0
+  MagicResistance:
+    baseValue: 0
+    statType: 0
+  AttackRange:
+    baseValue: 0
+    statType: 0
+  AttackSpeed:
+    baseValue: 0
+    statType: 0
+  MaxTarget:
+    baseValue: 0
+    statType: 0
+  MoveSpeed:
+    baseValue: 0
+    statType: 0

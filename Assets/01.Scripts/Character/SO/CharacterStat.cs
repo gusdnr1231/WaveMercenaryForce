@@ -1,13 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public enum Stat
 {
     MaxHp = 0,
-    Strength = 6,
-    AttackSpeed = 7,
+    Strength = 1,
+    Magic = 2,
+    Defense = 3,
+    MagicResistance = 4,
+    AttackRange = 5,
+    AttackSpeed = 6,
+    MaxTarget = 7,
     MoveSpeed = 8,
     End = 9
 }
@@ -117,6 +123,7 @@ public class StatData
     }
 }
 
+[Serializable]
 public class StatModifier
 {
     public readonly float _Value;
@@ -132,8 +139,48 @@ public class StatModifier
     }
 }
 
+[Serializable]
+public struct ProficiencyValues
+{
+    public float MaxHp;
+    public float Strength;
+    public float Magic;
+    public float Defense;
+    public float MagicResistance;
+    public float AttackRange;
+    public float AttackSpeed;
+    public float MaxTarget;
+    public float MoveSpeed;
+}
+
+[CreateAssetMenu(menuName = "SO/Character/Stat", fileName = "New Character Stat")]
 public class CharacterStat : ScriptableObject
 {
-    public string CharacterName;
+    public List<ProficiencyValues> CharacterStatValues;
 
+    [HideInInspector] public StatData MaxHp;
+    [HideInInspector] public StatData Strength;
+    [HideInInspector] public StatData Magic;
+    [HideInInspector] public StatData Defense;
+    [HideInInspector] public StatData MagicResistance;
+    [HideInInspector] public StatData AttackRange;
+    [HideInInspector] public StatData AttackSpeed;
+    [HideInInspector] public StatData MaxTarget;
+    [HideInInspector] public StatData MoveSpeed;
+
+    //현재 캐릭터의 기본 능력치를 현재 숙련도에 맞게 설정한다.
+    public void SetValues(int Proficiency)
+    {
+        ProficiencyValues AfterStatValue = CharacterStatValues[Proficiency];
+
+        MaxHp = new StatData(AfterStatValue.MaxHp, Stat.MaxHp);
+        Strength = new StatData(AfterStatValue.Strength, Stat.Strength);
+        Magic = new StatData(AfterStatValue.Magic, Stat.Magic);
+        Defense = new StatData(AfterStatValue.Defense, Stat.Defense);
+        MagicResistance = new StatData(AfterStatValue.MagicResistance, Stat.MagicResistance);
+        AttackRange = new StatData(AfterStatValue.AttackRange, Stat.AttackRange);
+        AttackSpeed = new StatData(AfterStatValue.AttackSpeed, Stat.AttackSpeed);
+        MaxTarget = new StatData(AfterStatValue.MaxTarget, Stat.MaxTarget);
+        MoveSpeed = new StatData(AfterStatValue.MoveSpeed, Stat.MoveSpeed);
+    }
 }

@@ -1,6 +1,9 @@
-using System.Collections;
+using BehaviorDesigner.Runtime;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public enum CharacterType
 {
@@ -9,6 +12,16 @@ public enum CharacterType
     Tanker = 2,
     Supporter = 3,
     Boss = 4
+}
+
+public enum CharacterGrade
+{
+    None = 0,
+    D = 1,
+    C = 2,
+    B = 3,
+    A = 4,
+    S = 5
 }
 
 [System.Serializable]
@@ -24,18 +37,25 @@ public struct FightingSpirit
 
 public struct CharacterTransform
 {
-    public Vector2 Position;
+    public Vector3 Position;
 }
 
 public abstract class MonoCharacter : MonoBehaviour
 {
     [Header("캐릭터 설정")]
+    [Tooltip("캐릭터 이름")]
+    public string CharacterName;
+    [Tooltip("캐릭터 능력치 정보")]
+    public CharacterStat characterStat;
+    [Tooltip("캐릭터 타입")]
     public CharacterType characterType;
+    [Tooltip("캐릭터 숙련도")]
+    [Range(0, 2)]public int CharacterProficiency = 0;
+    [Tooltip("캐릭터 등급")]
+    public CharacterGrade characterGrade;
     public FightingSpirit characterSpirit;
 
-    [Header("공격 우선도 설정")]
-    public List<CharacterType> TypeAttackOrder;
-
+    [HideInInspector] public SharedBool IsAlive;
     public CharacterTransform CharacterTrm;
 
     public CharacterType GetCharacterType() => characterType;
@@ -50,5 +70,21 @@ public abstract class MonoCharacter : MonoBehaviour
     public virtual void SetCharacterPosition(Vector2 position)
     {
         CharacterTrm.Position = position;
+    }
+}
+
+public class SharedPCharacter : SharedVariable<PlayerCharacter>
+{
+    public static implicit operator SharedPCharacter(PlayerCharacter value)
+    {
+        return new SharedPCharacter { Value = value };
+    }
+}
+
+public class SharedECharacter : SharedVariable<EnemyCharacter>
+{
+    public static implicit operator SharedECharacter(EnemyCharacter value)
+    {
+        return new SharedECharacter { Value = value };
     }
 }
