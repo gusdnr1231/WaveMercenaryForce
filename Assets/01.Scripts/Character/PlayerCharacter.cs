@@ -21,8 +21,9 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     #region BT Values
     private BehaviorTree _tree;
-    public SharedTransform _target;
-    public SharedFloat _range;
+    [HideInInspector] public SharedTransform _target;
+    [HideInInspector] public SharedFloat _range;
+    private SharedBool _isSpiritMax;
     #endregion
 
     private float currentHp;
@@ -43,8 +44,10 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         _tree = GetComponent<BehaviorTree>();
         _tree.SetVariableValue("plc", this);
         _tree.SetVariableValue("range", characterStat.MoveSpeed.StatValue);
+        _tree.SetVariable("isAlive", _isAlive);
 
         _target = _tree.GetVariable("target") as SharedTransform;
+        _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
     }
 
     public T GetCompo<T>() where T : class
@@ -59,7 +62,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     private void SetDefaultData()
     {
-        IsAlive = true;
+        _isAlive.Value = true;
         characterStat.SetValues(CharacterProficiency);
         currentHp = characterStat.MaxHp.StatValue;
         characterSpirit.CurrentSpirit = characterSpirit.DefaultSpirit;
@@ -67,7 +70,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     #region IDamageable Methods
 
-    public void TakeDamage(float Value)
+    public void TakeDamage(Stat AttackType, float Value)
     {
         currentHp -= Value;
         currentHp = Mathf.Clamp(currentHp, 0, characterStat.MaxHp.StatValue);
@@ -83,7 +86,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     public void ActiveDead()
     {
-        IsAlive = false;
+        _isAlive = false;
         OnDeadEvent?.Invoke();
         Debug.Log($"{this.name} is Dead");
     }

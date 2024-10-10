@@ -1,9 +1,6 @@
 using BehaviorDesigner.Runtime;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public enum CharacterType
 {
@@ -35,11 +32,6 @@ public struct FightingSpirit
     public int MaxSpirit;
 }
 
-public struct CharacterTransform
-{
-    public Vector3 Position;
-}
-
 public abstract class MonoCharacter : MonoBehaviour
 {
     [Header("캐릭터 설정")]
@@ -55,8 +47,8 @@ public abstract class MonoCharacter : MonoBehaviour
     public CharacterGrade characterGrade;
     public FightingSpirit characterSpirit;
 
-    [HideInInspector] public SharedBool IsAlive;
-    public CharacterTransform CharacterTrm;
+    [HideInInspector] public SharedBool _isAlive;
+    public LocationInfo CharacterLocation;
 
     public CharacterType GetCharacterType() => characterType;
     public bool IsFightSpiritMax() => characterSpirit.CurrentSpirit >= characterSpirit.MaxSpirit;
@@ -66,10 +58,12 @@ public abstract class MonoCharacter : MonoBehaviour
         characterSpirit.CurrentSpirit += AddAmount;
         characterSpirit.CurrentSpirit = Mathf.Clamp(characterSpirit.CurrentSpirit, 0, characterSpirit.MaxSpirit);
     }
-
-    public virtual void SetCharacterPosition(Vector2 position)
+    
+    public virtual void SetCharacterPosition(Vector3 position)
     {
-        CharacterTrm.Position = position;
+        CharacterLocation.Position = position;
+        CharacterLocation.Rotation = Quaternion.identity;
+        transform.position = position;
     }
 }
 

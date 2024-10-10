@@ -97,7 +97,6 @@ public class StatData
         float percentSum = 1f;
         // 기본 값 대입
 
-        Debug.Log(statModifiers.Count);
         if (statModifiers.Count > 0)
         {
             StatModifier modifier;
@@ -183,4 +182,33 @@ public class CharacterStat : ScriptableObject
         MaxTarget = new StatData(AfterStatValue.MaxTarget, Stat.MaxTarget);
         MoveSpeed = new StatData(AfterStatValue.MoveSpeed, Stat.MoveSpeed);
     }
+
+    public float ReturnStatValue(Stat stat)
+    {
+        switch (stat)
+        {
+            case Stat.MaxHp:
+                return MaxHp.StatValue;
+            case Stat.Strength:
+                return Strength.StatValue;
+            case Stat.Magic:
+                return Magic.StatValue;
+            case Stat.Defense:
+                return Defense.StatValue;
+            case Stat.MagicResistance:
+                return MagicResistance.StatValue;
+            case Stat.AttackRange:
+                return AttackRange.StatValue;
+            case Stat.AttackSpeed:
+                return AttackSpeed.StatValue;
+            case Stat.MaxTarget:
+                return MaxTarget.StatValue;
+            case Stat.MoveSpeed:
+                return MoveSpeed.StatValue;
+            default:
+                Debug.LogError($"Stat not found: {stat}");
+                return 0f; // 적절한 기본값 반환
+        }
+    }
+
 }

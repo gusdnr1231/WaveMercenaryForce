@@ -8,11 +8,19 @@ using UnityEngine;
 public class GameManager : Manager<GameManager>
 {
     [Header("게임 내 플레이어 관련 수치")]
-    [Range(0, 50)]public int MaxDeployCount = 3;
+    [Range(1, 50)] public int MaxDeployCount = 3;
     public int CollectGold = 0;
+    public int MaxCollectGold = 9999;
+    [Header("인게임 플레이 수치")]
+    [Range(60, 180)] public int MaxTurnTime = 120;
+    [Range(60, 180)] public int MaxBattleTime = 120;
+    private int remainTime;
+    public int RemainTime => remainTime;
 
-    public List<PlayerCharacter> DeployCharacters = new List<PlayerCharacter>();
-    public List<EnemyCharacter> RemainEnemys = new List<EnemyCharacter>();
+    [Tooltip("현재 배치된 플레이어 캐릭터")]
+    [HideInInspector] public List<PlayerCharacter> DeployCharacters = new List<PlayerCharacter>();
+    [Tooltip("남아있는 적 캐릭터")]
+    [HideInInspector] public List<EnemyCharacter> RemainEnemys = new List<EnemyCharacter>();
 
     private bool IsWinRound => RemainEnemys.Count <= 0;
 
@@ -23,13 +31,23 @@ public class GameManager : Manager<GameManager>
     public event Action<bool> OnEndRound;
 
     #endregion
-
-    private bool StartRound = false;
     
-    public void AddGold(int add)
+    public bool CanUseGold(int useValue) => CollectGold - useValue >= 0;
+
+    public void GoldChangeToFixed(int fixedValue)
     {
-        CollectGold += add;
-        CollectGold = Mathf.Clamp(CollectGold, 0, 9999);
+        if (fixedValue < 0) return;
+        CollectGold = fixedValue;
+        CollectGold = Mathf.Clamp(CollectGold, 0, MaxCollectGold);
+        OnChangeGold?.Invoke(CollectGold);
+    }
+
+    public void GoldChangeToValue(int changeValue)
+    {
+        //바뀌는 값이 음수일 때, 만약 소모한 이후 값이 0보다 작을 경우 실행하지 않음
+        if(changeValue < 0) if(CanUseGold(changeValue) == false) return;
+        CollectGold += changeValue;
+        CollectGold = Mathf.Clamp(CollectGold, 0, MaxCollectGold);
         OnChangeGold?.Invoke(CollectGold);
     }
 
@@ -37,4 +55,15 @@ public class GameManager : Manager<GameManager>
     {
         RemainEnemys.Add(add);
     }
+
+    #region Play Flow
+
+    private bool StartRound = false;
+
+    public void ActiveTimer()
+    {
+
+    }
+
+    #endregion
 }

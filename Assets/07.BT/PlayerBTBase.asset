@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: PlayerBTBase
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: PlayerBTBase
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(542.502136,147.582977)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(0,115.420982)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-1.90686035,116.772369)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CharacterStatusCondition","NodeData":{"Offset":"(-175.010345,160.220581)"},"ID":3,"Name":"\uce90\ub9ad\ud130
+        \uc0dd\uc874 \uc5ec\ubd80 \ud655\uc778","Instant":true,"SharedBoolStatusValue":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isAlive","IsShared":true,"BooleanmValue":false},"BooleanContainsValue":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(0.68963623,153.448273)"},"ID":4,"Name":"\ud589\ub3d9
+        \uc2e4\ud589","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-382.1429,188.571472)"},"ID":5,"Name":"\ubaa9\ud45c
+        \ucc3e\uae30","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(-166.7434,119.164215)"},"ID":6,"Name":"Inverter","Instant":true,"Children":[{"Type":"CheckTargetCondition","NodeData":{"Offset":"(-9.629562,122.962982)"},"ID":7,"Name":"Check
+        Target Condition","Instant":true,"SharedTransformTarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true}}]},{"Type":"FindTargetAction","NodeData":{"Offset":"(0.9090786,120)"},"ID":8,"Name":"Find
+        Target Action","Instant":true,"SharedTransformTargetTrm":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},"LayerMaskTargetLayer":256,"SinglesearchRadius":10000}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-186.4286,188.571472)"},"ID":9,"Name":"\ubaa9\ud45c\ub85c
+        \uc774\ub3d9","Instant":true,"AbortTypeabortType":"Self","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(0.232206345,116.837036)"},"ID":10,"Name":"\ubc18\uc804","Instant":true,"Children":[{"Type":"InDistanceCondition","NodeData":{"Offset":"(-2.12524414,98.9978)"},"ID":11,"Name":"\uacf5\uaca9
+        \uc0ac\uac70\ub9ac \ub0b4\uc778\uc9c0 \ud655\uc778","Instant":true,"SharedTransformTarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},"SharedFloatRange":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"range","IsShared":true,"SinglemValue":0}}]},{"Type":"PlayerMoveAction","NodeData":{"Offset":"(148.1818,117.272736)"},"ID":12,"Name":"Player
+        Move Action","Instant":true,"SharedPCharacterPlayer":{"Type":"SharedPCharacter","Name":"plc","IsShared":true},"SharedTransformTargetTrm":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},"SinglereCalcPeriod":0.5}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(317.386719,186.376358)"},"ID":13,"Name":"\uacf5\uaca9
+        \ubd80\ubd84","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-160.987885,122.0621)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CharacterStatusCondition","NodeData":{"Offset":"(-63.8888855,143.888885)"},"ID":15,"Name":"Character
+        Status Condition","Instant":true,"SharedBoolStatusValue":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isSpiritMax","IsShared":true,"BooleanmValue":false},"BooleanContainsValue":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(121.789673,150.9508)"},"ID":16,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Active
+        Skill"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(111.233917,132.617615)"},"ID":17,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"InDistanceCondition","NodeData":{"Offset":"(-1.89197731,122.777473)"},"ID":18,"Name":"\uacf5\uaca9
+        \uc0ac\uac70\ub9ac \ub0b4\uc778\uc9c0 \ud655\uc778","Instant":true,"SharedTransformTarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},"SharedFloatRange":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"range","IsShared":true,"SinglemValue":0}},{"Type":"PlayerStopAction","NodeData":{"Offset":"(165.453,119.231392)"},"ID":19,"Name":"Player
+        Stop Action","Instant":true,"SharedPCharacterPlayer":{"Type":"SharedPCharacter","Name":"plc","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(318.711365,124.103981)"},"ID":20,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"ActiveAttack"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]}]}]}]},"Variables":[{"Type":"SharedPCharacter","Name":"plc","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"range","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isAlive","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isSpiritMax","IsShared":true,"BooleanmValue":false}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.10
