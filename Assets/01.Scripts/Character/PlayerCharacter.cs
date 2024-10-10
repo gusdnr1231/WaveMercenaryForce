@@ -1,10 +1,8 @@
 using BehaviorDesigner.Runtime;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class PlayerCharacter : MonoCharacter, IDamageable
 {
@@ -15,6 +13,8 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     public EnemyCharacter AttackEnemy;
 
     #region Event Actions
+
+    public event Action StartCharacter;
     public event Action OnDeadEvent;
 
     #endregion
@@ -42,12 +42,22 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         SetDefaultData();
 
         _tree = GetComponent<BehaviorTree>();
+        _tree.StartWhenEnabled = true;
+        _tree.PauseWhenDisabled = true;
+
         _tree.SetVariableValue("plc", this);
         _tree.SetVariableValue("range", characterStat.MoveSpeed.StatValue);
         _tree.SetVariable("isAlive", _isAlive);
 
         _target = _tree.GetVariable("target") as SharedTransform;
         _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
+
+        _tree.enabled = false;
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.OnActionRound += HandleStartRound;
     }
 
     public T GetCompo<T>() where T : class
@@ -66,6 +76,27 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         characterStat.SetValues(CharacterProficiency);
         currentHp = characterStat.MaxHp.StatValue;
         characterSpirit.CurrentSpirit = characterSpirit.DefaultSpirit;
+    }
+
+    private void HandleStartRound(bool Action)
+    {
+        if(_tree == null)
+        {
+            Debug.LogError("BT is not assigned");
+            return;
+        }
+
+        if (Action == true)
+        {
+            _tree.enabled = true;
+            
+            SetDefaultData();
+            StartCharacter?.Invoke();
+        }
+        else if (Action == false)
+        {
+            _tree.enabled = false;
+        }
     }
 
     #region IDamageable Methods

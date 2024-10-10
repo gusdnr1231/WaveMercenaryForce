@@ -11,4 +11,9 @@ public class Manager<T> : MonoBehaviour where T : Manager<T>
     {
         Instance = (T)this;
     }
+
+    public T GetInstance()
+    {
+        return Instance;
+    }
 }
