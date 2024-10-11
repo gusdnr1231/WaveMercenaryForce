@@ -16,12 +16,20 @@ public enum Phase
 
 public class GameManager : Manager<GameManager>
 {
-    [Header("게임 내 플레이어 관련 수치")]
+    [Header("플레이어 관련 수치")]
     [Range(1, 10)] private int PlayerHp = 5;
     public int playerHp => PlayerHp;
-    [Range(1, 50)] public int MaxDeployCount = 3;
     public int CollectGold = 0;
     public int MaxCollectGold = 9999;
+
+    [Header("건물 관련 수치")]
+    [Tooltip("건물의 레벨")]
+    public int BuildingLevel = 1;                           //건물의 레벨
+    public int MaxLevel = 10;                               //건물의 최대 레벨
+    public int CurrentExp = 0;                              //현재 Exp
+    public List<int> NeedToExpValues = new List<int>();     //레벨 업에 필요한 값들
+    [Range(5, 20)] public int MaxSeatCount = 10;            //대기석 숫자
+    [Range(1, 50)] public int MaxDeployCount = 3;           //최대 배치 가능 수
 
     [Header("인게임 플레이 수치")]
     [Tooltip("페이즈 변경 대기 시간")]
@@ -166,6 +174,10 @@ public class GameManager : Manager<GameManager>
         timerCrt = StartCoroutine(TimerCoroutine(GamePhase));
     }
 
+    /// <summary>
+    /// 타이머 실행
+    /// </summary>
+    /// <param name="phase">현재 게임 진행 상황을 받아와, 끝났을 경우 알맞은 이벤트를 실행</param>
     private IEnumerator TimerCoroutine(Phase phase)
     {
         //기다리는 UI 작업은 여기서
@@ -202,6 +214,10 @@ public class GameManager : Manager<GameManager>
         }
     }
 
+    /// <summary>
+    /// 타이머가 실행 중, 중단 되었을 경우 실행
+    /// </summary>
+    /// <param name="phase">현재 게임 진행 상황을 받아와, 끝났을 경우 알맞은 이벤트를 실행</param>
     private IEnumerator ResumeTimer(Phase phase)
     {
         OnUpdateTimer?.Invoke(remainTime); // 초기 시간 업데이트

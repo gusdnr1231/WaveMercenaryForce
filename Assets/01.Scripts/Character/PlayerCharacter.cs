@@ -14,6 +14,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     #region Event Actions
 
+    public event Action<float> OnHpChange;
     public event Action StartCharacter;
     public event Action OnDeadEvent;
 
@@ -26,7 +27,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     private SharedBool _isSpiritMax;
     #endregion
 
-    private float currentHp;
+    private GameManager mng_Game;
 
     protected Dictionary<Type, IPlayerComponent> _components;
 
@@ -57,7 +58,8 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     private void Start()
     {
-        GameManager.Instance.OnActionRound += HandleStartRound;
+        mng_Game = GameManager.Instance.GetInstance();
+        mng_Game.OnActionRound += HandleStartRound;
     }
 
     public T GetCompo<T>() where T : class
@@ -104,15 +106,21 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     public void TakeDamage(Stat AttackType, float Value)
     {
         currentHp -= Value;
-        currentHp = Mathf.Clamp(currentHp, 0, characterStat.MaxHp.StatValue);
+        ActionHpEvent();
 
-        if(currentHp <= 0) ActiveDead();
+        if (currentHp <= 0) ActiveDead();
     }
 
     public void TakeHeal(float Value)
     {
         currentHp += Value;
+        ActionHpEvent();
+    }
+
+    private void ActionHpEvent()
+    {
         currentHp = Mathf.Clamp(currentHp, 0, characterStat.MaxHp.StatValue);
+        OnHpChange?.Invoke(currentHp);
     }
 
     public void ActiveDead()

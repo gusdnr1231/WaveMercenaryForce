@@ -49,6 +49,9 @@ public abstract class MonoCharacter : MonoBehaviour
 
     [HideInInspector] public SharedBool _isAlive;
     public LocationInfo CharacterLocation;
+    
+    //현재 체력
+    protected float currentHp;
 
     public CharacterType GetCharacterType() => characterType;
     public bool IsFightSpiritMax() => characterSpirit.CurrentSpirit >= characterSpirit.MaxSpirit;

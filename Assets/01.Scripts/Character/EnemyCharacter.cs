@@ -24,8 +24,6 @@ public class EnemyCharacter : MonoCharacter, IDamageable
     private SharedBool _isSpiritMax;
     #endregion
 
-    private float currentHp;
-
     protected Dictionary<Type, IEnemyComponent> _components;
 
     private void Awake()
