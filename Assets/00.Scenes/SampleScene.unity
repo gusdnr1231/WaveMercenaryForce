@@ -250,6 +250,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer_Text: {fileID: 1526281915}
+  Gold_Text: {fileID: 0}
+  ShopUI: {fileID: 0}
+  BuilgindLevel_Text: {fileID: 0}
+  CurrentExp_Text: {fileID: 0}
+  NeedExp_Text: {fileID: 0}
+  BuyExp_Btn: {fileID: 0}
+  AddExpValue: 3
+  NeedGold: 2
 --- !u!1 &484698930
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,10 +960,11 @@ GameObject:
   - component: {fileID: 707486508}
   - component: {fileID: 707486504}
   - component: {fileID: 707486507}
+  - component: {fileID: 707486509}
   - component: {fileID: 707486505}
   - component: {fileID: 707486506}
   m_Layer: 7
-  m_Name: Character
+  m_Name: PlayerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1133,6 +1142,19 @@ MonoBehaviour:
       Version: 1.7.10
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!114 &707486509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707486502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b64a9c4eb6cb6546a8b36c73458439e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDataList: []
 --- !u!1 &792975762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,7 +1232,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1750,8 +1772,10 @@ MonoBehaviour:
   MaxLevel: 10
   CurrentExp: 0
   NeedToExpValues: 
+  CurrentNeedExp: 0
   MaxSeatCount: 10
   MaxDeployCount: 3
+  IncreaseDeployCount: 2
   WaitPhaseChangeTime: 1
   MaxSettingTime: 120
   MaxBattleTime: 240

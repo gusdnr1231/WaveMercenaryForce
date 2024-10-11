@@ -440,8 +440,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 80}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127096144
 MonoBehaviour:
@@ -490,15 +490,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1233,6 +1233,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1517696977}
   - {fileID: 794847045}
   - {fileID: 1729360433}
   - {fileID: 419460705}
@@ -2164,11 +2165,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1517696977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: 0}
-  m_SizeDelta: {x: 150, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 20, y: 0}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &799248070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,8 +2217,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3421,11 +3422,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timer_Text: {fileID: 794847046}
   Gold_Text: {fileID: 575723290}
-  BuyExp_Btn: {fileID: 1839839775}
-  AddExpValue: 3
+  SettingUI: {fileID: 1729360432}
   BuilgindLevel_Text: {fileID: 127096144}
   CurrentExp_Text: {fileID: 1461617523}
   NeedExp_Text: {fileID: 799248070}
+  BuyExp_Btn: {fileID: 1839839775}
+  AddExpValue: 3
+  NeedGold: 2
 --- !u!1 &1461617521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3458,11 +3461,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1517696977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80, y: 0}
-  m_SizeDelta: {x: 150, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -20, y: 0}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1461617523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3510,8 +3513,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3644,8 +3647,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3717,21 +3720,21 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517696976}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 127096143}
   - {fileID: 1469945578}
   - {fileID: 1461617522}
   - {fileID: 799248069}
-  m_Father: {fileID: 1729360433}
+  m_Father: {fileID: 612324566}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: 30}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 200, y: -150}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1518877382
 GameObject:
@@ -4163,7 +4166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1729360433}
   m_Layer: 5
-  m_Name: ShopUI
+  m_Name: SettingUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4182,7 +4185,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 382245660}
-  - {fileID: 1517696977}
   - {fileID: 1839839772}
   - {fileID: 750652024}
   - {fileID: 702424068}
@@ -5028,6 +5030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd030a46b98d16d47bbbe69804217d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerMaxHp: 1
   CollectGold: 0
   MaxCollectGold: 9999
   BuildingLevel: 1
@@ -5039,8 +5042,8 @@ MonoBehaviour:
   MaxDeployCount: 3
   IncreaseDeployCount: 3
   WaitPhaseChangeTime: 3
-  MaxSettingTime: 120
-  MaxBattleTime: 240
+  MaxSettingTime: 60
+  MaxBattleTime: 60
   DeployCharacters: []
   RemainEnemys: []
 --- !u!1 &2114337354

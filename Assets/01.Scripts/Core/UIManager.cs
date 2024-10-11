@@ -10,7 +10,7 @@ public class UIManager : Manager<UIManager>
     [Header("게임 화면 UI 요소들")]
     [SerializeField] private TextMeshProUGUI Timer_Text;
     [SerializeField] private TextMeshProUGUI Gold_Text;
-    
+    [SerializeField] private GameObject SettingUI;
 
     [Header("용병단 건물 정보 UI 요소들")]
     [SerializeField] private TextMeshProUGUI BuilgindLevel_Text;
@@ -35,6 +35,7 @@ public class UIManager : Manager<UIManager>
 
         mng_Game.OnUpdateTimer += HandleTimer;
         mng_Game.OnChangeGold += HandleGold;
+        mng_Game.OnActionRound += HandleActiveRound;
 
         mng_Game.OnUpdateLevel += HandleBuildingLevel;
         mng_Game.OnUpdateExp += HandleBuildingExp;
@@ -62,6 +63,11 @@ public class UIManager : Manager<UIManager>
     private void HandleGold(int gold)
     {
         Gold_Text.text = gold.ToString();
+    }
+
+    private void HandleActiveRound(bool isActiveRound)
+    {
+        SettingUI.SetActive(!isActiveRound);
     }
 
     private void HandleBuildingLevel(int level, int need)

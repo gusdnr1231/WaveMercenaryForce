@@ -17,8 +17,9 @@ public enum Phase
 public class GameManager : Manager<GameManager>
 {
     [Header("플레이어 관련 수치")]
-    [Range(1, 10)] private int PlayerHp = 5;
-    public int playerHp => PlayerHp;
+    [SerializeField][Range(1, 10)] private int PlayerMaxHp = 5;
+    private int playerHp;
+    public int PlayerHp => playerHp;
     public int CollectGold = 0;
     public int MaxCollectGold = 9999;
 
@@ -40,8 +41,8 @@ public class GameManager : Manager<GameManager>
     [Range(60, 180)] public int MaxSettingTime = 120;
     [Tooltip("배틀 페이즈 시간")]
     [Range(60, 300)] public int MaxBattleTime = 240;
-    private int RemainTime;
-    public int remainTime => RemainTime;
+    private int remainTime;
+    public int RemainTime => remainTime;
 
     [Tooltip("현재 배치된 플레이어 캐릭터")]
     [HideInInspector] public List<PlayerCharacter> DeployCharacters = new List<PlayerCharacter>();
@@ -64,6 +65,7 @@ public class GameManager : Manager<GameManager>
 
     private void Start()
     {
+        playerHp = PlayerMaxHp;
         SetLevel();
         StartSettingTimer();
     }
@@ -160,7 +162,7 @@ public class GameManager : Manager<GameManager>
 
     #region Play Flow
 
-    private Phase GamePhase;
+    private Phase GamePhase = Phase.Setting;
     private bool IsStartRound = false;
 
     public void StarBattlePhase()
@@ -177,14 +179,17 @@ public class GameManager : Manager<GameManager>
         if (!IsStartRound) return;
         IsStartRound = false;
 
-        StartSettingTimer();
-
         if (IsWinRound == false)
         {
-            PlayerHp -= 1;
-            if(PlayerHp <= 0) EndGame();
+            playerHp -= 1;
+            if(playerHp <= 0)
+            {
+                EndGame();
+                return;
+            }
         }
 
+        StartSettingTimer();
         OnActionRound?.Invoke(IsStartRound);
     }
 
@@ -214,19 +219,25 @@ public class GameManager : Manager<GameManager>
 
     public void StartSettingTimer()
     {
-        RemainTime = MaxSettingTime;
+        remainTime = MaxSettingTime;
         GamePhase = Phase.Setting;
-        if (timerCrt != null) StopCoroutine(timerCrt);
-        timerCrt = null;
+        if (timerCrt != null)
+        {
+            StopCoroutine(timerCrt);
+            timerCrt = null;
+        }
         timerCrt = StartCoroutine(TimerCoroutine(GamePhase));
     }
 
     public void StartBattleTimer()
     {
-        RemainTime = MaxBattleTime;
+        remainTime = MaxBattleTime;
         GamePhase = Phase.Battle;
-        if (timerCrt != null) StopCoroutine(timerCrt);
-        timerCrt = null;
+        if (timerCrt != null)
+        {
+            StopCoroutine(timerCrt);
+            timerCrt = null;
+        }
         timerCrt = StartCoroutine(TimerCoroutine(GamePhase));
     }
 
@@ -241,27 +252,31 @@ public class GameManager : Manager<GameManager>
         yield return new WaitForSeconds(WaitPhaseChangeTime);
         OnActionWait?.Invoke(false);
 
-        OnUpdateTimer?.Invoke(remainTime); // 초기 시간 업데이트
+        OnUpdateTimer?.Invoke(RemainTime); // 초기 시간 업데이트
 
-        while (remainTime > 0)
+        while (RemainTime > 0)
         {
+            #if UNITY_EDITOR
+            yield return new WaitForSeconds(0.03f);
+            #else
             yield return new WaitForSeconds(1f);
-            RemainTime--;
-            OnUpdateTimer?.Invoke(remainTime); // 시간 업데이트
+            #endif
+                remainTime--;
+            OnUpdateTimer?.Invoke(RemainTime); // 시간 업데이트
 
             // 전투 중에 모든 적이 제거되면 라운드 종료
-            if (phase == Phase.Battle && IsWinRound)
+            /*if (phase == Phase.Battle && IsWinRound)
             {
                 EndBattlePhase();
                 yield break;
-            }
+            }*/
         }
 
         // 타이머가 끝난 후의 처리
         if (phase == Phase.Setting)
         {
-            // 설정 시간이 끝나면 전투 시간 타이머 시작
-            StartBattleTimer();
+            // 설정 시간이 끝나면 전투 시작
+            StarBattlePhase();
         }
         else if (phase == Phase.Battle)
         {
@@ -276,13 +291,13 @@ public class GameManager : Manager<GameManager>
     /// <param name="phase">현재 게임 진행 상황을 받아와, 끝났을 경우 알맞은 이벤트를 실행</param>
     private IEnumerator ResumeTimer(Phase phase)
     {
-        OnUpdateTimer?.Invoke(remainTime); // 초기 시간 업데이트
+        OnUpdateTimer?.Invoke(RemainTime); // 초기 시간 업데이트
 
-        while (remainTime > 0)
+        while (RemainTime > 0)
         {
             yield return new WaitForSeconds(1f);
-            RemainTime--;
-            OnUpdateTimer?.Invoke(remainTime); // 시간 업데이트
+            remainTime--;
+            OnUpdateTimer?.Invoke(RemainTime); // 시간 업데이트
 
             // 전투 중에 모든 적이 제거되면 라운드 종료
             if (phase == Phase.Battle && IsWinRound)
@@ -295,8 +310,8 @@ public class GameManager : Manager<GameManager>
         // 타이머가 끝난 후의 처리
         if (phase == Phase.Setting)
         {
-            // 설정 시간이 끝나면 전투 시간 타이머 시작
-            StartBattleTimer();
+            // 설정 시간이 끝나면 전투 시작
+            StarBattlePhase();
         }
         else if (phase == Phase.Battle)
         {
