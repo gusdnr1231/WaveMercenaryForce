@@ -27,9 +27,11 @@ public class GameManager : Manager<GameManager>
     public int BuildingLevel = 1;                           //건물의 레벨
     public int MaxLevel = 10;                               //건물의 최대 레벨
     public int CurrentExp = 0;                              //현재 Exp
-    public List<int> NeedToExpValues = new List<int>();     //레벨 업에 필요한 값들
+    public List<int> NeedToExpValues = new List<int>();     //레벨 업에 필요한 EXP 수치들
+    [HideInInspector] public int CurrentNeedExp = 0;        //현재 레벨업에 필요한 Exp 수치
     [Range(5, 20)] public int MaxSeatCount = 10;            //대기석 숫자
     [Range(1, 50)] public int MaxDeployCount = 3;           //최대 배치 가능 수
+    [Range(1, 5)] public int IncreaseDeployCount = 2;      //레벨 증가시 추가될 배치 가능 수
 
     [Header("인게임 플레이 수치")]
     [Tooltip("페이즈 변경 대기 시간")]
@@ -52,6 +54,8 @@ public class GameManager : Manager<GameManager>
 
     public event Action<int> OnChangeGold;
     public event Action<int> OnUpdateTimer;
+    public event Action<int> OnUpdateExp;
+    public event Action<int, int> OnUpdateLevel;
     public event Action<bool> IsPause;
     public event Action<bool> OnActionWait;
     public event Action<bool> OnActionRound;
@@ -60,11 +64,26 @@ public class GameManager : Manager<GameManager>
 
     private void Start()
     {
+        SetLevel();
         StartSettingTimer();
     }
 
-    public bool CanUseGold(int useValue) => CollectGold - useValue >= 0;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PauseGame(true);
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GoldChangeToValue(10);
+        }
+    }
 
+    #region Gold Methods
+
+    public bool CanUseGold(int useValue) => CollectGold - useValue >= 0;
+    
     public void GoldChangeToFixed(int fixedValue)
     {
         if (fixedValue < 0) return;
@@ -81,6 +100,41 @@ public class GameManager : Manager<GameManager>
         CollectGold = Mathf.Clamp(CollectGold, 0, MaxCollectGold);
         OnChangeGold?.Invoke(CollectGold);
     }
+
+    #endregion
+
+    #region Building Level Methods
+
+    public void AddExp(int add)
+    {
+        CurrentExp += add;
+        OnUpdateExp?.Invoke(CurrentExp);
+        CheckExp();
+    }
+
+    private void CheckExp()
+    {
+        if (CurrentExp >= CurrentNeedExp)
+        {
+            CurrentExp -= CurrentNeedExp;
+            BuildingLevel += 1;
+
+            MaxDeployCount += IncreaseDeployCount;
+
+            SetLevel();
+        }
+    }
+
+    public void SetLevel()
+    {
+        CurrentNeedExp = NeedToExpValues[BuildingLevel];
+        OnUpdateLevel?.Invoke(BuildingLevel, CurrentNeedExp);
+        OnUpdateExp?.Invoke(CurrentExp);
+    }
+
+    #endregion
+
+    #region Characters Methods
 
     public void AddDeployCharacters(PlayerCharacter add)
     {
@@ -101,6 +155,8 @@ public class GameManager : Manager<GameManager>
     {
         RemainEnemys.Remove(remove);
     }
+
+    #endregion
 
     #region Play Flow
 
@@ -138,7 +194,7 @@ public class GameManager : Manager<GameManager>
 
         if (pause)
         {
-            StopCoroutine(timerCrt);
+            if(timerCrt != null) StopCoroutine(timerCrt);
             timerCrt = null;
         }
         else
