@@ -2,6 +2,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
+[TaskCategory("Custom")]
 public class FindTargetAction : Action
 {
     public SharedTransform TargetTrm; // 타겟이 저장될 변수

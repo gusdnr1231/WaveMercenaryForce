@@ -22,12 +22,12 @@ public class PlayerMoveAction : Action
         _movement = Player.Value.GetCompo<PlayerMovement>();
 
         _movement.SetSpeed(Player.Value.characterStat.MoveSpeed.StatValue);
-        _movement.SetStop(false);
     }
 
     public override void OnStart()
     {
         _movement.SetDestination(TargetTrm.Value.position);
+        _movement.SetStop(false);
     }
 
     public override TaskStatus OnUpdate()

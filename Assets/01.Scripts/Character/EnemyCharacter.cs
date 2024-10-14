@@ -56,6 +56,10 @@ public class EnemyCharacter : MonoCharacter, IDamageable
         return default;
     }
 
+    public override void OnAnimationEnd()
+    {
+    }
+
     private void SetDefaultData()
     {
         _isAlive = true;
@@ -73,10 +77,46 @@ public class EnemyCharacter : MonoCharacter, IDamageable
 
     public void TakeDamage(Stat AttackType, float Value)
     {
-        currentHp -= Value;
-        currentHp = Mathf.Clamp(currentHp, 0, characterStat.MaxHp.StatValue);
+        float reductionAmount = 0f;
 
-        if (currentHp <= 0) ActiveDead();
+        switch (AttackType)
+        {
+            case Stat.Strength:
+                if (characterStat.Defense == null)
+                {
+                    Debug.LogError("Defense stat is null");
+                    return;
+                }
+                reductionAmount = 0.001f * characterStat.Defense.StatValue;
+                break;
+
+            case Stat.Magic:
+                if (characterStat.MagicResistance == null)
+                {
+                    Debug.LogError("MagicResistance stat is null");
+                    return;
+                }
+                reductionAmount = 0.001f * characterStat.MagicResistance.StatValue;
+                break;
+            default:
+                Debug.LogError($"Unknown AttackType: {AttackType}");
+                return;
+        }
+
+        // 데미지 감소율 계산 클램프 0% ~ 99%
+        reductionAmount = Mathf.Clamp(reductionAmount, 0f, 0.99f);
+
+        float damageTaken = Value - (Value * reductionAmount);
+        damageTaken = Mathf.Max(damageTaken, 0f);
+
+        currentHp -= damageTaken;
+        currentHp = Mathf.Clamp(currentHp, 0f, characterStat.MaxHp.StatValue);
+
+        // 사망 처리
+        if (currentHp <= 0)
+        {
+            ActiveDead();
+        }
     }
 
     public void TakeHeal(float Value)

@@ -22,4 +22,4 @@ MonoBehaviour:
   skillEffectPrefab: {fileID: 0}
   skillDuration: 3
   IsSingleTarget: 0
-  MaxTargetCount: 0
+  MaxTargetCount: 1

@@ -13,9 +13,8 @@ public enum Stat
     MagicResistance = 4,
     AttackRange = 5,
     AttackSpeed = 6,
-    MaxTarget = 7,
-    MoveSpeed = 8,
-    End = 9
+    MoveSpeed = 7,
+    End = 8
 }
 
 [Serializable]
@@ -148,7 +147,6 @@ public struct ProficiencyValues
     public float MagicResistance;
     public float AttackRange;
     public float AttackSpeed;
-    public float MaxTarget;
     public float MoveSpeed;
 }
 
@@ -164,7 +162,6 @@ public class CharacterStat : ScriptableObject
     [HideInInspector] public StatData MagicResistance;
     [HideInInspector] public StatData AttackRange;
     [HideInInspector] public StatData AttackSpeed;
-    [HideInInspector] public StatData MaxTarget;
     [HideInInspector] public StatData MoveSpeed;
 
     //현재 캐릭터의 기본 능력치를 현재 숙련도에 맞게 설정한다.
@@ -179,7 +176,6 @@ public class CharacterStat : ScriptableObject
         MagicResistance = new StatData(AfterStatValue.MagicResistance, Stat.MagicResistance);
         AttackRange = new StatData(AfterStatValue.AttackRange, Stat.AttackRange);
         AttackSpeed = new StatData(AfterStatValue.AttackSpeed, Stat.AttackSpeed);
-        MaxTarget = new StatData(AfterStatValue.MaxTarget, Stat.MaxTarget);
         MoveSpeed = new StatData(AfterStatValue.MoveSpeed, Stat.MoveSpeed);
     }
 
@@ -201,8 +197,6 @@ public class CharacterStat : ScriptableObject
                 return AttackRange.StatValue;
             case Stat.AttackSpeed:
                 return AttackSpeed.StatValue;
-            case Stat.MaxTarget:
-                return MaxTarget.StatValue;
             case Stat.MoveSpeed:
                 return MoveSpeed.StatValue;
             default:

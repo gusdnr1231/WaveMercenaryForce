@@ -18,52 +18,46 @@ MonoBehaviour:
     Magic: 10
     Defense: 14
     MagicResistance: 14
-    AttackRange: 5
-    AttackSpeed: 3
-    MaxTarget: 1
+    AttackRange: 0.3
+    AttackSpeed: 0.6
     MoveSpeed: 5
   - MaxHp: 200
     Strength: 30
     Magic: 30
     Defense: 14
     MagicResistance: 14
-    AttackRange: 5
-    AttackSpeed: 3
-    MaxTarget: 1
+    AttackRange: 0.3
+    AttackSpeed: 0.8
     MoveSpeed: 5
   - MaxHp: 200
     Strength: 60
     Magic: 60
     Defense: 14
     MagicResistance: 14
-    AttackRange: 5
-    AttackSpeed: 3
-    MaxTarget: 2
+    AttackRange: 0.3
+    AttackSpeed: 1.2
     MoveSpeed: 5
   MaxHp:
-    baseValue: 0
+    baseValue: 100
     statType: 0
   Strength:
-    baseValue: 0
-    statType: 0
+    baseValue: 5
+    statType: 1
   Magic:
-    baseValue: 0
-    statType: 0
+    baseValue: 10
+    statType: 2
   Defense:
-    baseValue: 0
-    statType: 0
+    baseValue: 14
+    statType: 3
   MagicResistance:
-    baseValue: 0
-    statType: 0
+    baseValue: 14
+    statType: 4
   AttackRange:
-    baseValue: 0
-    statType: 0
+    baseValue: 0.3
+    statType: 5
   AttackSpeed:
-    baseValue: 0
-    statType: 0
-  MaxTarget:
-    baseValue: 0
-    statType: 0
+    baseValue: 3
+    statType: 6
   MoveSpeed:
-    baseValue: 0
-    statType: 0
+    baseValue: 5
+    statType: 7

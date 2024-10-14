@@ -1,8 +1,7 @@
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[TaskCategory("Custom")]
 public class PlayerAttackAction : Action
 {
     public SharedPCharacter Player;
@@ -14,10 +13,18 @@ public class PlayerAttackAction : Action
         _attack = Player.Value.GetCompo<PlayerAttack>();
     }
 
+    public override void OnStart()
+    {
+        _attack.ActionAttack();
+    }
+
     public override TaskStatus OnUpdate()
     {
-        _attack.UseAttack();
+        if (_attack.IsAttack == false)
+        {
+            return TaskStatus.Success;
+        }
 
-        return TaskStatus.Success;
+        return TaskStatus.Running;
     }
 }

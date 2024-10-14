@@ -1,9 +1,8 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[TaskCategory("Custom")]
 public class CheckTargetCondition : Conditional
 {
     public SharedTransform Target;

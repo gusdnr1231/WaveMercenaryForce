@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,20 +7,36 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour, IPlayerComponent
 {
     private PlayerCharacter _plc;
+    private PlayerAnimator _animator;
     public NavMeshAgent CharacterAgent { get; private set; }
+
+    public event Action<bool> IsStopCharacter;
+    public event Action<Vector3> MoveToDirection;
 
     public void Initilize(PlayerCharacter plc)
     {
         _plc = plc;
+        _animator = plc.GetCompo<PlayerAnimator>();
 
         CharacterAgent = GetComponent<NavMeshAgent>();
         CharacterAgent.speed = _plc.characterStat.MoveSpeed.StatValue;
     }
 
-    public void AfterInitilize() { }
+    public void AfterInitilize()
+    {
+    }
 
-    public void SetStop(bool isStop) => CharacterAgent.isStopped = isStop;
+    public void SetStop(bool isStop)
+    {
+        CharacterAgent.isStopped = isStop;
+        IsStopCharacter?.Invoke(isStop);
+    }
+    public void SetDestination(Vector3 destination)
+    {
+        CharacterAgent.SetDestination(destination);
+        MoveToDirection?.Invoke(destination);
+    }
+
     public void SetSpeed(float speed) => CharacterAgent.speed = speed;
-    public void SetDestination(Vector3 destination) => CharacterAgent.SetDestination(destination);
     public void SetVelocity(Vector3 velocity) => CharacterAgent.velocity = velocity;
 }

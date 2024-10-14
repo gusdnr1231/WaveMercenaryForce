@@ -68,6 +68,8 @@ public abstract class MonoCharacter : MonoBehaviour
         CharacterLocation.Rotation = Quaternion.identity;
         transform.position = position;
     }
+
+    public abstract void OnAnimationEnd();
 }
 
 public class SharedPCharacter : SharedVariable<PlayerCharacter>

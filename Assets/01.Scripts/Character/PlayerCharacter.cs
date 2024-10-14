@@ -33,14 +33,14 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     private void Awake()
     {
+        SetDefaultData();
+
         _components = new Dictionary<Type, IPlayerComponent>();
         GetComponentsInChildren<IPlayerComponent>().ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
 
         _components.Values.ToList().ForEach(compo => compo.Initilize(this));
 
         _components.Values.ToList().ForEach(compo => compo.AfterInitilize());
-
-        SetDefaultData();
 
         _tree = GetComponent<BehaviorTree>();
         _tree.StartWhenEnabled = true;
@@ -70,6 +70,10 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         }
 
         return default;
+    }
+
+    public override void OnAnimationEnd()
+    {
     }
 
     private void SetDefaultData()
@@ -105,10 +109,46 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     public void TakeDamage(Stat AttackType, float Value)
     {
-        currentHp -= Value;
-        ActionHpEvent();
+        float reductionAmount = 0f;
 
-        if (currentHp <= 0) ActiveDead();
+        switch (AttackType)
+        {
+            case Stat.Strength:
+                if (characterStat.Defense == null)
+                {
+                    Debug.LogError("Defense stat is null");
+                    return;
+                }
+                reductionAmount = 0.001f * characterStat.Defense.StatValue;
+                break;
+
+            case Stat.Magic:
+                if (characterStat.MagicResistance == null)
+                {
+                    Debug.LogError("MagicResistance stat is null");
+                    return;
+                }
+                reductionAmount = 0.001f * characterStat.MagicResistance.StatValue;
+                break;
+            default:
+                Debug.LogError($"Unknown AttackType: {AttackType}");
+                return;
+        }
+
+        // 데미지 감소율 계산 클램프 0% ~ 99%
+        reductionAmount = Mathf.Clamp(reductionAmount, 0f, 0.99f);
+
+        float damageTaken = Value - (Value * reductionAmount);
+        damageTaken = Mathf.Max(damageTaken, 0f);
+
+        currentHp -= damageTaken;
+        currentHp = Mathf.Clamp(currentHp, 0f, characterStat.MaxHp.StatValue);
+
+        // 사망 처리
+        if (currentHp <= 0)
+        {
+            ActiveDead();
+        }
     }
 
     public void TakeHeal(float Value)
