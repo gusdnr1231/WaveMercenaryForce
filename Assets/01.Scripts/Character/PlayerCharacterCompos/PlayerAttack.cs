@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour, IPlayerComponent
 {
-    public AttackData attack;
-    public List<AttackData> skills = new List<AttackData>();
+    public AttackData attackData;
+    public AttackData skillData;
 
     private Transform AttackTarget;
 
@@ -39,7 +39,8 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
     private void ExcuteAttack()
     {
         AttackTarget = _plc._target.Value;
-        if (AttackTarget != null && _plc != null) attack.Execute(_plc, AttackTarget);
+        if (AttackTarget != null && _plc != null) attackData.Execute(_plc, AttackTarget);
+        _plc.AddFightingSpirit(attackData.addSpirit);
     }
 
     private void EndAttack()
@@ -73,10 +74,10 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
 
     #endregion
 
-    public void UseSkill(int useIndex)
+    public void UseSkill()
     {
         if(AttackTarget == null) return;
-        AttackData useSkill = skills[useIndex];
-        useSkill.Execute(_plc, AttackTarget);
+        _plc.characterSpirit.CurrentSpirit = 0;
+        skillData.Execute(_plc, AttackTarget);
     }
 }
