@@ -401,7 +401,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -417,18 +416,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -702,50 +689,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547766106}
   m_CullTransparentMesh: 1
---- !u!1 &619394800
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 619394802}
-  - component: {fileID: 619394801}
-  m_Layer: 0
-  m_Name: Global Light 2D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &619394801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619394800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &619394802
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619394800}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697601628
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +893,6 @@ MonoBehaviour:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 0}
   Nickname: "\uD14C\uC2A4\uD2B8\uC6A9"
-  AttackEnemy: {fileID: 0}
   _target:
     mIsShared: 0
     mIsGlobal: 0
@@ -1059,14 +1001,13 @@ MonoBehaviour:
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(415.402161,104.38298)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-4.59783936,124.38298)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(4.533203,131.79425)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-207.082947,146.567078)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"FindTargetAction","NodeData":{"Offset":"(-106.194717,146.28125)"},"ID":4,"Name":"Find
         Target Action","Instant":true,"SharedTransformTargetTrm":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},"LayerMaskTargetLayer":256,"SinglesearchRadius":10000},{"Type":"PlayerMoveAction","NodeData":{"Offset":"(111.084778,145.2976)"},"ID":5,"Name":"Player
-        Move Action","Instant":true,"SharedPCharacterPlayer":{"Type":"SharedPCharacter","Name":"plc","IsShared":true,"PlayerCharactermValue":0},"SharedTransformTargetTrm":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},"SinglereCalcPeriod":0.5}]}]}]},"Variables":[{"Type":"SharedPCharacter","Name":"plc","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"range","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isAlive","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isSpiritMax","IsShared":true,"BooleanmValue":false}]}'
+        Move Action","Instant":true,"SharedPCharacterPlayer":{"Type":"SharedPCharacter","Name":"plc","IsShared":true},"SharedTransformTargetTrm":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},"SinglereCalcPeriod":0.5}]}]}]},"Variables":[{"Type":"SharedPCharacter","Name":"plc","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"target","IsShared":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"range","IsShared":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isAlive","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isSpiritMax","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"isAnimationEnd","IsShared":true,"BooleanmValue":false}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
         startIndex: 
         dataPosition: 
-        unityObjects:
-        - {fileID: 707486504}
+        unityObjects: []
         byteData: 
         byteDataArray: 
       Version: 1.7.10
@@ -1084,8 +1025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b64a9c4eb6cb6546a8b36c73458439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDataList:
-  - {fileID: 11400000, guid: 0a07b12943957da4da7bc65e1e87f8c0, type: 2}
+  attack: {fileID: 11400000, guid: 0a07b12943957da4da7bc65e1e87f8c0, type: 2}
+  skills: []
 --- !u!1 &792975762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1522,7 @@ GameObject:
   - component: {fileID: 1221831115}
   - component: {fileID: 1221831118}
   - component: {fileID: 1221831117}
+  - component: {fileID: 1221831119}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1667,6 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d3c0df138fa1b4884be061cf33d3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _paramList: {fileID: 11400000, guid: 026590ce49405844b9d9f515fb1e599c, type: 2}
 --- !u!95 &1221831118
 Animator:
   serializedVersion: 5
@@ -1688,6 +1631,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1221831119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221831114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083348e20887c324db7dc54659a8e650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1273815101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,9 +2105,9 @@ GameObject:
   - component: {fileID: 1740817864}
   - component: {fileID: 1740817868}
   - component: {fileID: 1740817865}
+  - component: {fileID: 1740817869}
   - component: {fileID: 1740817866}
   - component: {fileID: 1740817867}
-  - component: {fileID: 1740817869}
   m_Layer: 8
   m_Name: ECharacter
   m_TagString: Untagged
@@ -2325,11 +2280,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1740817863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b99ab78a5d81afa4196a4a911aa22f08, type: 3}
+  m_Script: {fileID: 11500000, guid: 78610850dd5262b42825af59dadbe9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  gravity: -9.81
 --- !u!1 &1794710811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2340,6 +2293,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1794710814}
   - component: {fileID: 1794710813}
+  - component: {fileID: 1794710815}
+  - component: {fileID: 1794710816}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -2388,8 +2343,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 847739883, guid: 4d26a274a86c24d468cf4989430db18b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2414,6 +2369,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1740817864}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!95 &1794710815
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794710811}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: ac0fb6a39d4f47b4a8c35a5305206144, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1794710816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794710811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4f3d759c9551d448000f902fcbfd8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2053559635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,7 +2472,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 619394802}
   - {fileID: 1364597099}
   - {fileID: 1218365636}
   - {fileID: 277522325}

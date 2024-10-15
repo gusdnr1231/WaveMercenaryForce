@@ -48,6 +48,8 @@ public abstract class MonoCharacter : MonoBehaviour
     public FightingSpirit characterSpirit;
 
     [HideInInspector] public SharedBool _isAlive;
+    protected SharedBool _isAnimationEnd;
+
     public LocationInfo CharacterLocation;
     
     //현재 체력
@@ -69,7 +71,10 @@ public abstract class MonoCharacter : MonoBehaviour
         transform.position = position;
     }
 
-    public abstract void OnAnimationEnd();
+    public virtual void OnAnimationEnd()
+    {
+        _isAnimationEnd.Value = true;
+    }
 }
 
 public class SharedPCharacter : SharedVariable<PlayerCharacter>

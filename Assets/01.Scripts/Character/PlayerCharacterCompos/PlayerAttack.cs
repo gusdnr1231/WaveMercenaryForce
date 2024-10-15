@@ -1,14 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerAttack : MonoBehaviour, IPlayerComponent
 {
-    public List<AttackData> attackDataList; // 에디터에서 할당할 공격 데이터 리스트
-    private IAttack attack;
-    private List<ISkill> skills = new List<ISkill>();
+    public AttackData attack;
+    public List<AttackData> skills = new List<AttackData>();
 
     private Transform AttackTarget;
 
@@ -16,7 +14,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
     private PlayerAnimator _animator;
 
     private Coroutine cooldownCoroutine;
-
+   
     public bool IsAttack { get; private set; } = false;
     public bool IsCooldown { get; private set; } = false;
     public bool CanAttack => IsAttack == false && IsCooldown == false;
@@ -29,43 +27,47 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
 
     public void AfterInitilize()
     {
+        _animator.OnStartAttackAnim += ActionAttack;
         _animator.OnExcuteAttackAnim += ExcuteAttack;
+        _animator.OnEndAttackAnim += EndAttack;
     }
 
     #region 기본 공격 부분
 
-    public void ActionAttack()
-    {
-        if (!CanAttack) return;
-
-        IsAttack = true;
-        _animator.ActionAttack();
-    }
+    private void ActionAttack() => IsAttack = true;
     
     private void ExcuteAttack()
     {
         AttackTarget = _plc._target.Value;
-        if (AttackTarget != null) attack.ExecuteAttack(_plc, AttackTarget);
-
-        IsAttack = false;
+        if (AttackTarget != null && _plc != null) attack.Execute(_plc, AttackTarget);
     }
 
-    public void AttackCooldown()
+    private void EndAttack()
     {
-        if (!CanAttack || IsCooldown) return;
+        IsAttack = false;
+        AttackCooldown();
+    }
+
+    private void AttackCooldown()
+    {
         if (cooldownCoroutine != null) return;
+
+        Debug.Log("Start Attack Cooldown");
 
         IsCooldown = true;
         float attackCooldownTime = 1f / _plc.characterStat.AttackSpeed.StatValue;
 
-
+        if (cooldownCoroutine != null) StopCoroutine(cooldownCoroutine);
         cooldownCoroutine = StartCoroutine(ResetCooldownAfterTime(attackCooldownTime));
     }
 
     private IEnumerator ResetCooldownAfterTime(float cooldownTime)
     {
+        Debug.Log("Start Cooldown Coroutine");
         yield return new WaitForSeconds(cooldownTime);
         IsCooldown = false;
+        cooldownCoroutine = null;
+        Debug.Log("End Cooldown Coroutine");
     }
 
 
@@ -74,7 +76,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
     public void UseSkill(int useIndex)
     {
         if(AttackTarget == null) return;
-        ISkill useSkill = skills[useIndex];
+        AttackData useSkill = skills[useIndex];
         useSkill.Execute(_plc, AttackTarget);
     }
 }

@@ -12,7 +12,17 @@ public class MeleeAttackData : AttackData
     {
         if (target.TryGetComponent(out IDamageable attackTarget))
         {
-            attackTarget.TakeDamage(AttackBy, CalculateDamage(attacker.characterStat.ReturnStatValue(AttackBy)));
+            if (attacker.characterStat != null)
+            {
+                float baseValue = attacker.characterStat.ReturnStatValue(AttackBy);
+                float damage = CalculateDamage(baseValue);
+                attackTarget.TakeDamage(AttackBy, damage);
+                Debug.Log($"{attacker.name} dealt {damage} damage to {target.name}");
+            }
+            else
+            {
+                Debug.LogError("attacker.characterStat is null in MeleeAttackData.Execute.");
+            }
         }
 
         if (effectPrefab != null)

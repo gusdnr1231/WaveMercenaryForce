@@ -28,14 +28,14 @@ public class EnemyCharacter : MonoCharacter, IDamageable
 
     private void Awake()
     {
+        SetDefaultData();
+
         _components = new Dictionary<Type, IEnemyComponent>();
         GetComponentsInChildren<IEnemyComponent>().ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
 
         _components.Values.ToList().ForEach(compo => compo.Initilize(this));
 
         _components.Values.ToList().ForEach(compo => compo.AfterInitilize());
-
-        SetDefaultData();
 
         _tree = GetComponent<BehaviorTree>();
         _tree.SetVariableValue("emc", this);

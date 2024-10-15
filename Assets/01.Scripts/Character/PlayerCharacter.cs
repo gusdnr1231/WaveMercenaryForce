@@ -10,7 +10,6 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     [Header("플레이어 캐릭터 요소")]
     [Tooltip("캐릭터 이명")]
     public string Nickname;
-    public EnemyCharacter AttackEnemy;
 
     #region Event Actions
 
@@ -50,6 +49,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         _tree.SetVariableValue("range", characterStat.MoveSpeed.StatValue);
         _tree.SetVariable("isAlive", _isAlive);
 
+        _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
         _target = _tree.GetVariable("target") as SharedTransform;
         _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
 
@@ -74,6 +74,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     public override void OnAnimationEnd()
     {
+        base.OnAnimationEnd();
     }
 
     private void SetDefaultData()

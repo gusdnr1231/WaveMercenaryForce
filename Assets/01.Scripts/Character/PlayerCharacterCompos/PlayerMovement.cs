@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
     private PlayerAnimator _animator;
     public NavMeshAgent CharacterAgent { get; private set; }
 
-    public event Action<bool> IsStopCharacter;
     public event Action<Vector3> MoveToDirection;
 
     public void Initilize(PlayerCharacter plc)
@@ -26,11 +25,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
     {
     }
 
-    public void SetStop(bool isStop)
-    {
-        CharacterAgent.isStopped = isStop;
-        IsStopCharacter?.Invoke(isStop);
-    }
+    public void SetStop(bool isStop) => CharacterAgent.isStopped = isStop;
+
     public void SetDestination(Vector3 destination)
     {
         CharacterAgent.SetDestination(destination);

@@ -19,11 +19,16 @@ public class PlayerAttackCondition : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if (_attack != null && _attack.CanAttack)
+        if (_attack == null)
         {
-            return TaskStatus.Success; // 공격 가능 상태
+            return TaskStatus.Failure;
         }
 
-        return TaskStatus.Failure; // 공격 불가능 상태
+        if (_attack.CanAttack)
+        {
+            return TaskStatus.Success;
+        }
+
+        return TaskStatus.Running;
     }
 }

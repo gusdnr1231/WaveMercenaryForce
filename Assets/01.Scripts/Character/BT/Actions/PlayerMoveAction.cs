@@ -1,10 +1,8 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
+[TaskCategory("Custom")]
 public class PlayerMoveAction : Action
 {
     public SharedPCharacter Player;

@@ -1,60 +1,50 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimator : MonoBehaviour, IPlayerComponent
+public class PlayerAnimator : MonoChacarterAnimator, IPlayerComponent
 {
-    private readonly int _idleHash = Animator.StringToHash("Idle");
-    private readonly int _moveHash = Animator.StringToHash("Move");
-    private readonly int _attackTriggerHash = Animator.StringToHash("Attack");
-    private readonly int _deadTriggerHash = Animator.StringToHash("Dead");
-
     private PlayerCharacter _plc;
     private PlayerMovement _movement;
-    private Animator _animator;
-    public Animator Animator => _animator;
+    private PlayerAttack _attack;
 
     public event Action OnStartAttackAnim;
     public event Action OnExcuteAttackAnim;
+    public event Action OnEndAttackAnim;
 
     public void Initilize(PlayerCharacter plc)
     {
         _plc = plc;
+        _character = plc;
+
         _movement = plc.GetCompo<PlayerMovement>();
+        _attack = plc.GetCompo<PlayerAttack>();
 
         _animator = GetComponent<Animator>();
     }
 
     public void AfterInitilize()
     {
-        _plc.OnDeadEvent += HandleDeadEvent;
-        _movement.IsStopCharacter += HandleMovementEvent;
     }
 
-    private void HandleMovementEvent(bool isStop)
+    //애니메이션 이벤트로 실행되는 함수 (공격 시작 타이밍)
+    private void StartAttack()
     {
-        _animator.SetBool(_idleHash, isStop);
-        _animator.SetBool(_moveHash, !isStop);
+        Debug.Log("Start Attack");
+        OnStartAttackAnim?.Invoke();
     }
 
-    public void ActionAttack()
-    {
-        _animator.SetTrigger(_attackTriggerHash);
-    }
-
-    private void HandleDeadEvent()
-    {
-        _animator.SetTrigger(_deadTriggerHash);
-    }
-
-    private void AnimationEnd()
-    {
-        _plc.OnAnimationEnd();
-    }
-
+    //애니메이션 이벤트로 실행되는 함수 (실 공격 타이밍)
     private void ExcuteAttack()
     {
+        Debug.Log("Excute Attack");
         OnExcuteAttackAnim?.Invoke();
+    }
+
+    //애니메이션 이벤트로 실행되는 함수 (공격 종료 타이밍)
+    private void EndAttack()
+    {
+        Debug.Log("End Attack");
+        OnEndAttackAnim?.Invoke();
+        AnimationEnd();
     }
 }
