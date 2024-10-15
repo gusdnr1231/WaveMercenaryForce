@@ -24,9 +24,13 @@ public class PlayerAttackCondition : Conditional
             return TaskStatus.Failure;
         }
 
-        if (_attack.CanAttack)
+        if (_attack.CanAttack == true)
         {
             return TaskStatus.Success;
+        }
+        else if(_attack.CanAttack == false)
+        {
+            return TaskStatus.Failure;
         }
 
         return TaskStatus.Running;
