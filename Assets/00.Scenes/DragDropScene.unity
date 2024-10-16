@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 213883338}
   - component: {fileID: 213883337}
   - component: {fileID: 213883336}
+  - component: {fileID: 213883340}
   m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
@@ -334,6 +335,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &213883340
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213883335}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &575524457
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +468,8 @@ GameObject:
   - component: {fileID: 612669091}
   - component: {fileID: 612669090}
   - component: {fileID: 612669089}
-  m_Layer: 0
+  - component: {fileID: 612669093}
+  m_Layer: 10
   m_Name: CharacterSeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,6 +562,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &612669093
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612669088}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &928588885
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +601,7 @@ GameObject:
   - component: {fileID: 928588888}
   - component: {fileID: 928588887}
   - component: {fileID: 928588886}
+  - component: {fileID: 928588890}
   m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
@@ -639,6 +696,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &928588890
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928588885}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1562639204
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,11 +755,11 @@ MonoBehaviour:
   CamMoveDuration: 0.3
   CamLocations:
   - Position: {x: 0, y: 8, z: -10}
-    Rotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+    Rotation: {x: 45, y: 0, z: 0}
   - Position: {x: 0, y: 12, z: 0}
-    Rotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+    Rotation: {x: 90, y: 0, z: 0}
   - Position: {x: 14, y: 2.5, z: 7.5}
-    Rotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
+    Rotation: {x: 0, y: -270, z: 0}
 --- !u!4 &1562639206
 Transform:
   m_ObjectHideFlags: 0
@@ -795,6 +879,7 @@ GameObject:
   - component: {fileID: 2137475534}
   - component: {fileID: 2137475533}
   - component: {fileID: 2137475536}
+  - component: {fileID: 2137475537}
   m_Layer: 7
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -878,7 +963,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f293190943745e4aad7465ceb0e38e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
+  WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!114 &2137475537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137475532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6fa5365038d414a894ccb1f21cba95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: teple
+  characterStat: {fileID: 11400000, guid: faf9bfb7037a25e40b8b2299669fdeb6, type: 2}
+  characterType: 1
+  CharacterProficiency: 0
+  characterGrade: 1
+  characterSpirit:
+    DefaultSpirit: 0
+    CurrentSpirit: 0
+    MaxSpirit: 0
+  _isAlive:
+    mIsShared: 0
+    mIsGlobal: 0
+    mIsDynamic: 0
+    mName: 
+    mToolTip: 
+    mPropertyMapping: 
+    mPropertyMappingOwner: {fileID: 0}
+    mValue: 0
+  CharacterLocation:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+  Nickname: 
+  _target:
+    mIsShared: 0
+    mIsGlobal: 0
+    mIsDynamic: 0
+    mName: 
+    mToolTip: 
+    mPropertyMapping: 
+    mPropertyMappingOwner: {fileID: 0}
+    mValue: {fileID: 0}
+  _range:
+    mIsShared: 0
+    mIsGlobal: 0
+    mIsDynamic: 0
+    mName: 
+    mToolTip: 
+    mPropertyMapping: 
+    mPropertyMappingOwner: {fileID: 0}
+    mValue: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

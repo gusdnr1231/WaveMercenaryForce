@@ -7,17 +7,19 @@ using DG.Tweening;
 public struct LocationInfo
 {
     public Vector3 Position;
-    public Quaternion Rotation;
+    public Vector3 Rotation;
 }
 
 public class CameraManager : Manager<CameraManager>
 {
     private Camera PlayerCam;
+    public bool IsCameraMoving { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
         PlayerCam = Camera.main;
+        IsCameraMoving = false;
         MoveCamera(0);
     }
 
@@ -40,8 +42,10 @@ public class CameraManager : Manager<CameraManager>
         LocationInfo moveToInfo = CamLocations[CurrentCamLocation];
 
         PlayerCam.transform.DOMove(moveToInfo.Position, CamMoveDuration)
-        .SetEase(Ease.OutQuint);
-        PlayerCam.transform.DORotate(moveToInfo.Rotation.eulerAngles, CamMoveDuration);
+        .SetEase(Ease.OutQuint)
+        .OnStart(() => IsCameraMoving = true)
+        .OnComplete(() => IsCameraMoving = false);
+        PlayerCam.transform.DORotate(moveToInfo.Rotation, CamMoveDuration);
     }
 
     #endregion

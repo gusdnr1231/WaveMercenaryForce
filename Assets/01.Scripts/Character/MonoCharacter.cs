@@ -67,7 +67,7 @@ public abstract class MonoCharacter : MonoBehaviour
     public virtual void SetCharacterPosition(Vector3 position)
     {
         CharacterLocation.Position = position;
-        CharacterLocation.Rotation = Quaternion.identity;
+        CharacterLocation.Rotation = Vector3.zero;
         transform.position = position;
     }
 

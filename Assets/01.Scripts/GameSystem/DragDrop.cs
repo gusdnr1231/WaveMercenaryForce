@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
+    [SerializeField] private LayerMask WhatIsGround;
+
     private bool isDragging = false;
 
+    private MonoCharacter character;
     private CharacterController characterController;
-    private Vector3 offset;
+    private Vector3 DefaultPosition;
 
-    private void Start()
+    private RaycastHit hit;
+
+    private void Awake()
     {
+        character = GetComponent<MonoCharacter>();
         characterController = GetComponent<CharacterController>();
     }
 
@@ -23,25 +29,33 @@ public class DragDrop : MonoBehaviour
 
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
 
+            //Debug.Log(worldPos);
+            Physics.Raycast(new Ray(worldPos, Vector3.down), out hit, 30f, WhatIsGround);
+            Debug.Log(hit.collider);
+
             // CharacterController의 이동
-            characterController.enabled = false; // CharacterController 비활성화
-            transform.position = new Vector3(worldPos.x, 0, worldPos.z);
-            characterController.enabled = true; // CharacterController 활성화
+            character.SetCharacterPosition(new Vector3(worldPos.x, hit.point.y, worldPos.z));
         }
     }
 
     private void OnMouseDown()
     {
-        isDragging = true;
         CameraManager.Instance.MoveCamera(1);
+        DefaultPosition = transform.position;
+        isDragging = true;
 
-        // 오브젝트와의 거리 차이
-        //offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        characterController.enabled = false; // CharacterController 비활성화
     }
 
     private void OnMouseUp()
     {
+        if (hit.collider == null)
+        {
+            character.SetCharacterPosition(DefaultPosition);
+        }
         isDragging = false;
         CameraManager.Instance.MoveCamera(0);
+
+        characterController.enabled = true; // CharacterController 활성화
     }
 }

@@ -41,25 +41,27 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
         _components.Values.ToList().ForEach(compo => compo.AfterInitilize());
 
-        _tree = GetComponent<BehaviorTree>();
-        _tree.StartWhenEnabled = true;
-        _tree.PauseWhenDisabled = true;
+        if(TryGetComponent(out _tree))
+        {
+            _tree.StartWhenEnabled = true;
+            _tree.PauseWhenDisabled = true;
 
-        _tree.SetVariableValue("plc", this);
-        _tree.SetVariableValue("range", characterStat.MoveSpeed.StatValue);
-        _tree.SetVariable("isAlive", _isAlive);
+            _tree.SetVariableValue("plc", this);
+            _tree.SetVariableValue("range", characterStat.MoveSpeed.StatValue);
+            _tree.SetVariable("isAlive", _isAlive);
 
-        _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
-        _target = _tree.GetVariable("target") as SharedTransform;
-        _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
+            _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
+            _target = _tree.GetVariable("target") as SharedTransform;
+            _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
 
-        _tree.enabled = false;
+            _tree.enabled = false;
+        }
     }
 
     private void Start()
     {
-        mng_Game = GameManager.Instance.GetInstance();
-        mng_Game.OnActionRound += HandleStartRound;
+        /*mng_Game = GameManager.Instance.GetInstance();
+        mng_Game.OnActionRound += HandleStartRound;*/
     }
 
     public T GetCompo<T>() where T : class
