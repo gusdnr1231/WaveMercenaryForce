@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Data_Maregal
   m_EditorClassIdentifier: 
   CharacterName: "\uB9C8\uB808\uAC08"
+  CharacterSprite: {fileID: -816406759, guid: a88fe4d4cd9092746bece3f85c85503b, type: 3}
   StatusData: {fileID: 11400000, guid: faf9bfb7037a25e40b8b2299669fdeb6, type: 2}
   TypeData: 1
   CharacterGrade: 1

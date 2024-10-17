@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0853e85270365a1458ca5e79c6524f33, type: 3}
-  m_Name: SoliderItem
+  m_Script: {fileID: 11500000, guid: 07463cc30b55c16459b8d43e4d8e54d2, type: 3}
+  m_Name: Character_Player
   m_EditorClassIdentifier: 
-  poolType: {fileID: 11400000, guid: 89570f7670af9bc4fb5806766af45d44, type: 2}
-  prefab: {fileID: 0}
-  initCount: 45
+  typeName: Character_Player

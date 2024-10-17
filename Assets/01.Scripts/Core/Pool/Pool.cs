@@ -16,6 +16,7 @@ public class Pool
         for (int maked = 0; maked < count; maked++)
         {
             GameObject gameObj = GameObject.Instantiate(_prefab, _parent);
+            gameObj.name = gameObj.name.Replace("(Clone)", "");
             gameObj.SetActive(false);
             IPoolable item = gameObj.GetComponent<IPoolable>();
             item.SetUpPool(this);

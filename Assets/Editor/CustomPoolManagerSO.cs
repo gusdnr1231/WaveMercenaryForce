@@ -19,7 +19,9 @@ public class CustomPoolManagerSO : Editor
         base.OnInspectorGUI();
 
         // Text field to input the custom path
-        customPath = EditorGUILayout.TextField("Pool Items Path", customPath);
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Pool Items Path", EditorStyles.boldLabel);
+        customPath = EditorGUILayout.TextField("Enter Path", customPath);
 
         if (GUILayout.Button("Get All Pool Item"))
         {
