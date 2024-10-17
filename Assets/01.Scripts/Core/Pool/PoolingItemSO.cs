@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SO/Pool/Item")]
+[CreateAssetMenu(menuName = "Pool/Item")]
 public class PoolingItemSO : ScriptableObject
 {
     public PoolTypeSO poolType;

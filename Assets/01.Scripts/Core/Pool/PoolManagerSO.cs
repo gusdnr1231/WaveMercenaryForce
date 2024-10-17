@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SO/Pool/Manager")]
+[CreateAssetMenu(menuName = "Pool/Manager")]
 public class PoolManagerSO : ScriptableObject
 {
     public List<PoolingItemSO> poolingItems;
     private Dictionary<PoolTypeSO, Pool> _pools;
 
     [SerializeField] private Transform _rootTrm;
+    public bool IsCompleteInitialize {get; private set; } = false;
 
     public void InitializePool(Transform root)
     {
+        IsCompleteInitialize = false;
+
         _rootTrm = root;
         _pools = new Dictionary<PoolTypeSO, Pool>();
 
@@ -23,6 +26,8 @@ public class PoolManagerSO : ScriptableObject
             Pool pool = new Pool(poolable, _rootTrm, item.initCount);
             _pools.Add(item.poolType, pool);
         }
+
+        IsCompleteInitialize = true;
     }
 
     public IPoolable Pop(PoolTypeSO type)

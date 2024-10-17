@@ -150,7 +150,7 @@ public struct ProficiencyValues
     public float MoveSpeed;
 }
 
-[CreateAssetMenu(menuName = "SO/Character/Stat", fileName = "New Character Stat")]
+[CreateAssetMenu(menuName = "Character/Stat", fileName = "New Character Stat", order = 3)]
 public class CharacterStat : ScriptableObject
 {
     public List<ProficiencyValues> CharacterStatValues;

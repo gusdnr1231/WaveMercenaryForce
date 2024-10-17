@@ -32,30 +32,28 @@ public struct FightingSpirit
     public int MaxSpirit;
 }
 
-public abstract class MonoCharacter : MonoBehaviour
+public abstract class MonoCharacter : MonoBehaviour, IPoolable
 {
-    [Header("캐릭터 설정")]
-    [Tooltip("캐릭터 이름")]
-    public string CharacterName;
-    [Tooltip("캐릭터 능력치 정보")]
-    public CharacterStat characterStat;
-    [Tooltip("캐릭터 타입")]
-    public CharacterType characterType;
+    [field: SerializeField] public PoolTypeSO PoolType { get; private set; }
+    public GameObject GameObject => gameObject;
+    protected Pool _characterPool;
+
+    [Header("캐릭터 정보")]
+    public BaseCharacterDataSO CharacterDataBase;
     [Tooltip("캐릭터 숙련도")]
-    [Range(0, 2)]public int CharacterProficiency = 0;
-    [Tooltip("캐릭터 등급")]
-    public CharacterGrade characterGrade;
-    public FightingSpirit characterSpirit;
+    [Range(0, 2)] public int CharacterProficiency = 0;
+
+    [HideInInspector] public FightingSpirit characterSpirit;
+    [HideInInspector] public CharacterStat characterStat;
+    [HideInInspector] public LocationInfo CharacterLocation;
 
     [HideInInspector] public SharedBool _isAlive;
     protected SharedBool _isAnimationEnd;
-
-    public LocationInfo CharacterLocation;
     
     //현재 체력
     protected float currentHp;
 
-    public CharacterType GetCharacterType() => characterType;
+    public CharacterType GetCharacterType() => CharacterDataBase.TypeData;
     public bool IsFightSpiritMax() => characterSpirit.CurrentSpirit >= characterSpirit.MaxSpirit;
 
     public virtual void AddFightingSpirit(int AddAmount)
@@ -75,6 +73,28 @@ public abstract class MonoCharacter : MonoBehaviour
     {
         _isAnimationEnd.Value = true;
     }
+
+    protected void GetDataFromDataBase()
+    {
+        characterStat = CharacterDataBase.StatusData;
+        Debug.Log(characterStat);
+        characterSpirit = CharacterDataBase.CharacterSpirit;
+        Debug.Log(characterSpirit.DefaultSpirit);
+        Debug.Log(characterSpirit.CurrentSpirit);
+        Debug.Log(characterSpirit.MaxSpirit);
+    }
+
+    #region IPoolable Methods
+
+    public virtual void SetUpPool(Pool pool)
+    {
+        _characterPool = pool;
+        GetDataFromDataBase();
+    }
+
+    public abstract void ResetItem();
+
+    #endregion
 }
 
 public class SharedPCharacter : SharedVariable<PlayerCharacter>

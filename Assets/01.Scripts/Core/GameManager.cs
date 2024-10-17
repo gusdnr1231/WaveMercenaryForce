@@ -1,11 +1,6 @@
-﻿using BehaviorDesigner.Runtime.Tasks.Unity.Timeline;
-using DG.Tweening.Core.Easing;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public enum Phase
@@ -16,6 +11,11 @@ public enum Phase
 
 public class GameManager : Manager<GameManager>
 {
+    [Header("Pool Manager")]
+    [SerializeField] private PoolManagerSO _poolManager;
+    [SerializeField] private GameObject PoolParentObj;
+    private bool IsCompletePoolInitialize => _poolManager.IsCompleteInitialize;
+
     [Header("플레이어 관련 수치")]
     [SerializeField][Range(1, 10)] private int PlayerMaxHp = 5;
     private int playerHp;
@@ -63,15 +63,21 @@ public class GameManager : Manager<GameManager>
 
     #endregion
 
+    protected override void Awake()
+    {
+        base.Awake();
+        if(_poolManager != null) _poolManager.InitializePool(PoolParentObj.transform);
+    }
+
     private void Start()
     {
         playerHp = PlayerMaxHp;
         SetLevel();
-        StartSettingTimer();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q)) StartSettingTimer();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PauseGame(true);

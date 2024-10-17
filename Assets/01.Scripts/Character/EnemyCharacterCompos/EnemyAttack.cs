@@ -6,11 +6,11 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour, IEnemyComponent
 {
     [Header("공격 정보 (추후 캐릭터 데이터로 전부 합칠 예정)")]
-    public List<AttackData> attackDataList; // 에디터에서 할당할 공격 데이터 리스트
-    private IAttack attack;
-    private List<ISkill> skills = new List<ISkill>();
+    public AttackData attackData;
+    public AttackData skillData;
 
     private Transform AttackTarget;
+
     private EnemyCharacter _emc;
     private EnemyAnimator _animator;
 
@@ -33,18 +33,12 @@ public class EnemyAttack : MonoBehaviour, IEnemyComponent
 
     #region 기본 공격 부분
 
-    public void ActionAttack()
-    {
-        if (!CanAttack) return;
-
-        IsAttack = true;
-        _animator.ActionAttack();
-    }
+    public void ActionAttack() => IsAttack = true;
 
     private void ExcuteAttack()
     {
         AttackTarget = _emc._target.Value;
-        if (AttackTarget != null) attack.ExecuteAttack(_emc, AttackTarget);
+        if (AttackTarget != null) attackData.Execute(_emc, AttackTarget);
 
         IsAttack = false;
     }
@@ -67,13 +61,12 @@ public class EnemyAttack : MonoBehaviour, IEnemyComponent
         IsCooldown = false;
     }
 
-
     #endregion
 
-    public void UseSkill(int useIndex)
+    public void UseSkill()
     {
         if (AttackTarget == null) return;
-        ISkill useSkill = skills[useIndex];
-        useSkill.Execute(_emc, AttackTarget);
+        _emc.characterSpirit.CurrentSpirit = 0;
+        skillData.Execute(_emc, AttackTarget);
     }
 }

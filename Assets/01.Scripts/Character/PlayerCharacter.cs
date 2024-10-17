@@ -6,17 +6,12 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoCharacter, IDamageable
 {
-    [Space]
-    [Header("플레이어 캐릭터 요소")]
-    [Tooltip("캐릭터 이명")]
-    public string Nickname;
+    private PlayerCharacterDataSO plcData;
 
     #region Event Actions
-
     public event Action<float> OnHpChange;
     public event Action StartCharacter;
     public event Action OnDeadEvent;
-
     #endregion
 
     #region BT Values
@@ -32,6 +27,10 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     private void Awake()
     {
+        plcData = CharacterDataBase as PlayerCharacterDataSO;
+
+        GetDataFromDataBase();
+
         SetDefaultData();
 
         _components = new Dictionary<Type, IPlayerComponent>();
@@ -60,8 +59,8 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     private void Start()
     {
-        /*mng_Game = GameManager.Instance.GetInstance();
-        mng_Game.OnActionRound += HandleStartRound;*/
+        mng_Game = GameManager.Instance.GetInstance();
+        mng_Game.OnActionRound += HandleStartRound;
     }
 
     public T GetCompo<T>() where T : class
@@ -147,6 +146,8 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         currentHp -= damageTaken;
         currentHp = Mathf.Clamp(currentHp, 0f, characterStat.MaxHp.StatValue);
 
+        ActionHpEvent();
+
         // 사망 처리
         if (currentHp <= 0)
         {
@@ -171,6 +172,19 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         _isAlive = false;
         OnDeadEvent?.Invoke();
         Debug.Log($"{this.name} is Dead");
+    }
+
+    #endregion
+
+    #region IPoolable Methods
+
+    public override void SetUpPool(Pool pool)
+    {
+        base.SetUpPool(pool);
+    }
+
+    public override void ResetItem()
+    {
     }
 
     #endregion

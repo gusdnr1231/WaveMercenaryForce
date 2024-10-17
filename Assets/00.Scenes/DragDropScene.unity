@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 2137475536}
   - component: {fileID: 2137475537}
   m_Layer: 7
-  m_Name: PlayerCharacter
+  m_Name: Character_Solider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -978,15 +978,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6fa5365038d414a894ccb1f21cba95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterName: teple
+  <PoolType>k__BackingField: {fileID: 11400000, guid: 89570f7670af9bc4fb5806766af45d44, type: 2}
+  CharacterName: "\uB9C8\uB808\uAC08"
   characterStat: {fileID: 11400000, guid: faf9bfb7037a25e40b8b2299669fdeb6, type: 2}
   characterType: 1
   CharacterProficiency: 0
   characterGrade: 1
   characterSpirit:
-    DefaultSpirit: 0
+    DefaultSpirit: 15
     CurrentSpirit: 0
-    MaxSpirit: 0
+    MaxSpirit: 60
   _isAlive:
     mIsShared: 0
     mIsGlobal: 0
@@ -999,7 +1000,7 @@ MonoBehaviour:
   CharacterLocation:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0}
-  Nickname: 
+  Nickname: "\uBCF4\uCD08\uBCD1"
   _target:
     mIsShared: 0
     mIsGlobal: 0

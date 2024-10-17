@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour, IPlayerComponent
 {
+    [Header("공격 정보 (추후 캐릭터 데이터로 전부 합칠 예정)")]
     public AttackData attackData;
     public AttackData skillData;
 
@@ -70,7 +71,6 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
         cooldownCoroutine = null;
         Debug.Log("End Cooldown Coroutine");
     }
-
 
     #endregion
 

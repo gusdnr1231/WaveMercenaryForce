@@ -1,7 +1,5 @@
 using BehaviorDesigner.Runtime;
-using BehaviorDesigner.Runtime.Tasks.Unity.UnityParticleSystem;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,8 +11,9 @@ public class EnemyCharacter : MonoCharacter, IDamageable
     public PlayerCharacter AttackEnemy;
 
     #region Event Actions
+    public event Action<float> OnHpChange;
+    public event Action StartCharacter;
     public event Action OnDeadEvent;
-
     #endregion
 
     #region BT Values
@@ -131,6 +130,20 @@ public class EnemyCharacter : MonoCharacter, IDamageable
         OnDeadEvent?.Invoke();
         Debug.Log($"{this.name} is Dead");
     }
+
+    #endregion
+
+    #region IPoolable Method
+
+    public override void SetUpPool(Pool pool)
+    {
+        base.SetUpPool(pool);
+    }
+
+    public override void ResetItem()
+    {
+    }
+
 
     #endregion
 }

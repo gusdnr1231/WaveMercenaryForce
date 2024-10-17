@@ -166,14 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177403c2c6980d848a62d1f639496172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CamMoveDuration: 0.3
+  CamMoveDuration: 0.15
   CamLocations:
   - Position: {x: 0, y: 8, z: -10}
-    Rotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  - Position: {x: 0, y: 12, z: 0}
-    Rotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+    Rotation: {x: 45, y: 0, z: 0}
+  - Position: {x: 0, y: 10, z: 0}
+    Rotation: {x: 90, y: 0, z: 0}
   - Position: {x: 14, y: 2.5, z: 7.5}
-    Rotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
+    Rotation: {x: 0, y: 270, z: 0}
 --- !u!1 &277522324
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,15 +871,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6fa5365038d414a894ccb1f21cba95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PoolType>k__BackingField: {fileID: 0}
+  CharacterDataBase: {fileID: 11400000, guid: 922facd4f03e5c441bc2aed0eb0d531d, type: 2}
   CharacterName: "\uD14C\uD50C"
-  characterStat: {fileID: 11400000, guid: faf9bfb7037a25e40b8b2299669fdeb6, type: 2}
-  characterType: 1
-  CharacterProficiency: 0
   characterGrade: 1
+  CharacterProficiency: 0
   characterSpirit:
     DefaultSpirit: 0
     CurrentSpirit: 0
     MaxSpirit: 0
+  characterStat: {fileID: 11400000, guid: faf9bfb7037a25e40b8b2299669fdeb6, type: 2}
+  CharacterLocation:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
   _isAlive:
     mIsShared: 0
     mIsGlobal: 0
@@ -889,10 +893,6 @@ MonoBehaviour:
     mPropertyMapping: 
     mPropertyMappingOwner: {fileID: 0}
     mValue: 0
-  CharacterLocation:
-    Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-  Nickname: "\uD14C\uC2A4\uD2B8\uC6A9"
   _target:
     mIsShared: 0
     mIsGlobal: 0
@@ -1025,8 +1025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b64a9c4eb6cb6546a8b36c73458439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 11400000, guid: 0a07b12943957da4da7bc65e1e87f8c0, type: 2}
-  skills: []
+  attackData: {fileID: 0}
+  skillData: {fileID: 0}
 --- !u!1 &792975762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd030a46b98d16d47bbbe69804217d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _poolManager: {fileID: 11400000, guid: fb636a6baf384644999aab13b205bd0b, type: 2}
+  PoolParentObj: {fileID: 1273815101}
   PlayerMaxHp: 5
   CollectGold: 0
   MaxCollectGold: 9999
@@ -2143,15 +2145,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2853cd533cfa4f7438b334a116cd7c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PoolType>k__BackingField: {fileID: 0}
+  CharacterDataBase: {fileID: 0}
   CharacterName: "\uD14C\uC801"
-  characterStat: {fileID: 11400000, guid: b4d46fc4e6aec9240aeb796528aff9d8, type: 2}
-  characterType: 2
-  CharacterProficiency: 0
   characterGrade: 0
+  CharacterProficiency: 0
   characterSpirit:
     DefaultSpirit: 0
     CurrentSpirit: 0
     MaxSpirit: 0
+  characterStat: {fileID: 11400000, guid: b4d46fc4e6aec9240aeb796528aff9d8, type: 2}
+  CharacterLocation:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
   _isAlive:
     mIsShared: 0
     mIsGlobal: 0
@@ -2161,9 +2167,6 @@ MonoBehaviour:
     mPropertyMapping: 
     mPropertyMappingOwner: {fileID: 0}
     mValue: 0
-  CharacterLocation:
-    Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
   AttackEnemy: {fileID: 0}
   _target:
     mIsShared: 0
@@ -2402,6 +2405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4f3d759c9551d448000f902fcbfd8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _paramList: {fileID: 0}
 --- !u!1 &2053559635
 GameObject:
   m_ObjectHideFlags: 0
