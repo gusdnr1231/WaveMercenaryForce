@@ -23,6 +23,7 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
     public void Initilize(PlayerCharacter plc)
     {
         _plc = plc;
+
         _animator = plc.GetCompo<PlayerAnimator>();
     }
 

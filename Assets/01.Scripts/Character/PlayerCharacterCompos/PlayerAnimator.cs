@@ -24,6 +24,12 @@ public class PlayerAnimator : MonoChacarterAnimator, IPlayerComponent
 
     public void AfterInitilize()
     {
+        _plc.OnChangeCharacterData += HandleChangeAnimController;
+    }
+
+    private void HandleChangeAnimController(PlayerCharacterDataSO initData)
+    {
+        if (_animator != null) _animator.runtimeAnimatorController = initData.CharacterAnimator;
     }
 
     //애니메이션 이벤트로 실행되는 함수 (공격 시작 타이밍)

@@ -38,8 +38,9 @@ public abstract class MonoCharacter : MonoBehaviour, IPoolable
     public GameObject GameObject => gameObject;
     protected Pool _characterPool;
 
-    [Header("캐릭터 정보")]
-    public BaseCharacterDataSO CharacterDataBase;
+    [field:Header("캐릭터 정보")]
+    [field:SerializeField]
+    public BaseCharacterDataSO CharacterDataBase {  get; private set; }
     [Tooltip("캐릭터 숙련도")]
     [Range(0, 2)] public int CharacterProficiency = 0;
 
@@ -74,7 +75,7 @@ public abstract class MonoCharacter : MonoBehaviour, IPoolable
         _isAnimationEnd.Value = true;
     }
 
-    protected void GetDataFromDataBase()
+    protected virtual void GetDataFromDataBase()
     {
         characterStat = CharacterDataBase.StatusData;
         Debug.Log(characterStat);
@@ -84,12 +85,16 @@ public abstract class MonoCharacter : MonoBehaviour, IPoolable
         Debug.Log(characterSpirit.MaxSpirit);
     }
 
+    public virtual void SetCharacterData(BaseCharacterDataSO initData)
+    {
+        CharacterDataBase = initData;
+    }
+
     #region IPoolable Methods
 
     public virtual void SetUpPool(Pool pool)
     {
         _characterPool = pool;
-        GetDataFromDataBase();
     }
 
     public abstract void ResetItem();

@@ -24,6 +24,7 @@ public class PlayerMoveAction : Action
 
     public override void OnStart()
     {
+        _movement.SetSpeed(Player.Value.characterStat.MoveSpeed.StatValue);
         _movement.SetDestination(TargetTrm.Value.position);
         _movement.SetStop(false);
     }

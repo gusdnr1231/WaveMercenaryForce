@@ -7,7 +7,7 @@ using UnityEngine;
 public class CustomPoolManagerSO : Editor
 {
     private PoolManagerSO _manager;
-    private string customPath = "Assets/08SO/Pool/Items"; // Default path
+    private string customPath = "Assets/Resources/CharacterPools"; // Default path
 
     private void OnEnable()
     {

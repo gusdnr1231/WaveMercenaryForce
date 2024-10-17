@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoCharacter, IDamageable
 {
-    private PlayerCharacterDataSO plcData;
+    private PlayerCharacterDataSO plcData { get; set; }
 
     #region Event Actions
+    public event Action<PlayerCharacterDataSO> OnChangeCharacterData;
+    public event Action OnSetDefaultData;
+    public event Action OnResetPool;
     public event Action<float> OnHpChange;
     public event Action StartCharacter;
     public event Action OnDeadEvent;
@@ -29,10 +32,6 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     {
         plcData = CharacterDataBase as PlayerCharacterDataSO;
 
-        GetDataFromDataBase();
-
-        SetDefaultData();
-
         _components = new Dictionary<Type, IPlayerComponent>();
         GetComponentsInChildren<IPlayerComponent>().ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
 
@@ -46,7 +45,6 @@ public class PlayerCharacter : MonoCharacter, IDamageable
             _tree.PauseWhenDisabled = true;
 
             _tree.SetVariableValue("plc", this);
-            _tree.SetVariableValue("range", characterStat.MoveSpeed.StatValue);
             _tree.SetVariable("isAlive", _isAlive);
 
             _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
@@ -82,8 +80,27 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     {
         _isAlive.Value = true;
         characterStat.SetValues(CharacterProficiency);
+
         currentHp = characterStat.MaxHp.StatValue;
         characterSpirit.CurrentSpirit = characterSpirit.DefaultSpirit;
+
+        _tree.SetVariableValue("range", characterStat.AttackRange.StatValue);
+
+        OnSetDefaultData?.Invoke();
+    }
+
+    protected override void GetDataFromDataBase()
+    {
+        base.GetDataFromDataBase();
+        SetDefaultData();
+    }
+
+    public override void SetCharacterData(BaseCharacterDataSO initData)
+    {
+        base.SetCharacterData(initData);
+        plcData = CharacterDataBase as PlayerCharacterDataSO;
+        OnChangeCharacterData?.Invoke(plcData);
+        GetDataFromDataBase();
     }
 
     private void HandleStartRound(bool Action)
@@ -185,6 +202,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     public override void ResetItem()
     {
+        OnResetPool?.Invoke();
     }
 
     #endregion

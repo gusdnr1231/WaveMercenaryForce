@@ -18,11 +18,16 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
         _animator = plc.GetCompo<PlayerAnimator>();
 
         CharacterAgent = GetComponent<NavMeshAgent>();
-        CharacterAgent.speed = _plc.characterStat.MoveSpeed.StatValue;
     }
 
     public void AfterInitilize()
     {
+        _plc.OnSetDefaultData += HandleSetDefaultMoveSpeed;
+    }
+
+    private void HandleSetDefaultMoveSpeed()
+    {
+        CharacterAgent.speed = _plc.characterStat.MoveSpeed.StatValue;
     }
 
     public void SetStop(bool isStop) => CharacterAgent.isStopped = isStop;

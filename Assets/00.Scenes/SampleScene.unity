@@ -1314,6 +1314,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1273815102}
   - component: {fileID: 1273815103}
+  - component: {fileID: 1273815104}
+  - component: {fileID: 1273815105}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1366,6 +1368,38 @@ MonoBehaviour:
   MaxBattleTime: 240
   DeployCharacters: []
   RemainEnemys: []
+--- !u!114 &1273815104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273815101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b109dca4f333244ab9f28d602881b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolManager: {fileID: 11400000, guid: fb636a6baf384644999aab13b205bd0b, type: 2}
+  SpawnChannel: {fileID: 11400000, guid: 6ce1b6f69229d4f45bbf173505c12149, type: 2}
+  PLCPoolType: {fileID: 11400000, guid: 89570f7670af9bc4fb5806766af45d44, type: 2}
+  EMCPoolType: {fileID: 0}
+--- !u!114 &1273815105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273815101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa70b5eaa55a174dae75d32cadb2026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  make: {fileID: 11400000, guid: 922facd4f03e5c441bc2aed0eb0d531d, type: 2}
+  makeChannel: {fileID: 11400000, guid: 6ce1b6f69229d4f45bbf173505c12149, type: 2}
+  MinPoint: {x: -8, y: 0, z: -6}
+  MaxPoint: {x: 8, y: 0, z: 6}
 --- !u!1 &1312753753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PoolType>k__BackingField: {fileID: 0}
-  CharacterDataBase: {fileID: 0}
+  <CharacterDataBase>k__BackingField: {fileID: 0}
   CharacterProficiency: 0
   characterSpirit:
     DefaultSpirit: 0
@@ -2181,6 +2215,10 @@ PrefabInstance:
     - target: {fileID: 8786445191320148644, guid: d93496843c6ff2f45969ae1c51f1643a, type: 3}
       propertyPath: m_Name
       value: Character_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786445191320148644, guid: d93496843c6ff2f45969ae1c51f1643a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
