@@ -100,13 +100,15 @@ public class GameManager : Manager<GameManager>
         OnChangeGold?.Invoke(CollectGold);
     }
 
-    public void GoldChangeToValue(int changeValue)
+    public bool GoldChangeToValue(int changeValue)
     {
         //바뀌는 값이 음수일 때, 만약 소모한 이후 값이 0보다 작을 경우 실행하지 않음
-        if(changeValue < 0) if(CanUseGold(changeValue) == false) return;
+        if(changeValue < 0) if(CanUseGold(changeValue) == false) return false;
         CollectGold += changeValue;
         CollectGold = Mathf.Clamp(CollectGold, 0, MaxCollectGold);
         OnChangeGold?.Invoke(CollectGold);
+        
+        return true;
     }
 
     #endregion

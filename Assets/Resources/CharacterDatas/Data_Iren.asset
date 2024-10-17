@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b9762599d269e4ca388b881fc7f72b, type: 3}
+  m_Name: Data_Iren
+  m_EditorClassIdentifier: 
+  CharacterName: "\uB9C8\uB808\uAC08"
+  CharacterSprite: {fileID: 21300000, guid: cb5cfbea979b510408d4223455726f0a, type: 3}
+  StatusData: {fileID: 11400000, guid: faf9bfb7037a25e40b8b2299669fdeb6, type: 2}
+  TypeData: 2
+  CharacterGrade: 4
+  CharacterAttack: {fileID: 11400000, guid: 0a07b12943957da4da7bc65e1e87f8c0, type: 2}
+  CharacterSkill: {fileID: 11400000, guid: 0a07b12943957da4da7bc65e1e87f8c0, type: 2}
+  <CharacterSpirit>k__BackingField:
+    DefaultSpirit: 10
+    CurrentSpirit: 0
+    MaxSpirit: 80
+  CharacterAnimator: {fileID: 22100000, guid: 359051e334e169743a549357ca9c4c8e, type: 2}
+  CharacterAlias: "\uC131\uC804\uC0AC"

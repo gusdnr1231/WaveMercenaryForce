@@ -856,9 +856,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960bd59c9386d0f49a1298a25b4952ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PoolType>k__BackingField: {fileID: 0}
+  SpawnChannel: {fileID: 0}
   CharacterImage: {fileID: 1735612650}
   CharacterName: {fileID: 1955537514}
   CharacterCost: {fileID: 707415767}
+  datas:
+  - {fileID: 11400000, guid: 922facd4f03e5c441bc2aed0eb0d531d, type: 2}
+  - {fileID: 11400000, guid: aa8d54d5ff99a74438c5c2f60df97608, type: 2}
+  - {fileID: 11400000, guid: c8b1f4d5a5ef8454faa326a36fc5f7f3, type: 2}
 --- !u!222 &534249018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1373,9 +1379,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960bd59c9386d0f49a1298a25b4952ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PoolType>k__BackingField: {fileID: 0}
+  SpawnChannel: {fileID: 0}
   CharacterImage: {fileID: 1858289526}
   CharacterName: {fileID: 1636972765}
   CharacterCost: {fileID: 949993826}
+  datas:
+  - {fileID: 11400000, guid: 922facd4f03e5c441bc2aed0eb0d531d, type: 2}
+  - {fileID: 11400000, guid: aa8d54d5ff99a74438c5c2f60df97608, type: 2}
+  - {fileID: 11400000, guid: c8b1f4d5a5ef8454faa326a36fc5f7f3, type: 2}
 --- !u!222 &672229138
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1874,9 +1886,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960bd59c9386d0f49a1298a25b4952ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PoolType>k__BackingField: {fileID: 11400000, guid: 50d94b8db1425304f9652e8b3f7b0360, type: 2}
+  SpawnChannel: {fileID: 11400000, guid: 6ce1b6f69229d4f45bbf173505c12149, type: 2}
   CharacterImage: {fileID: 24701635}
   CharacterName: {fileID: 2114337356}
   CharacterCost: {fileID: 573591158}
+  datas:
+  - {fileID: 11400000, guid: 922facd4f03e5c441bc2aed0eb0d531d, type: 2}
+  - {fileID: 11400000, guid: aa8d54d5ff99a74438c5c2f60df97608, type: 2}
+  - {fileID: 11400000, guid: c8b1f4d5a5ef8454faa326a36fc5f7f3, type: 2}
 --- !u!1 &750652023
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,9 +2414,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960bd59c9386d0f49a1298a25b4952ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PoolType>k__BackingField: {fileID: 0}
+  SpawnChannel: {fileID: 0}
   CharacterImage: {fileID: 1518877384}
   CharacterName: {fileID: 1941321619}
   CharacterCost: {fileID: 1617083748}
+  datas:
+  - {fileID: 11400000, guid: 922facd4f03e5c441bc2aed0eb0d531d, type: 2}
+  - {fileID: 11400000, guid: aa8d54d5ff99a74438c5c2f60df97608, type: 2}
+  - {fileID: 11400000, guid: c8b1f4d5a5ef8454faa326a36fc5f7f3, type: 2}
 --- !u!222 &804521309
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2747,9 +2771,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960bd59c9386d0f49a1298a25b4952ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PoolType>k__BackingField: {fileID: 0}
+  SpawnChannel: {fileID: 0}
   CharacterImage: {fileID: 1647519167}
   CharacterName: {fileID: 1119182218}
   CharacterCost: {fileID: 846012114}
+  datas:
+  - {fileID: 11400000, guid: 922facd4f03e5c441bc2aed0eb0d531d, type: 2}
+  - {fileID: 11400000, guid: aa8d54d5ff99a74438c5c2f60df97608, type: 2}
+  - {fileID: 11400000, guid: c8b1f4d5a5ef8454faa326a36fc5f7f3, type: 2}
 --- !u!222 &947010746
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3270,38 +3300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
-  m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
 --- !u!81 &1280213769
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5030,6 +5028,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd030a46b98d16d47bbbe69804217d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _poolManager: {fileID: 11400000, guid: fb636a6baf384644999aab13b205bd0b, type: 2}
+  PoolParentObj: {fileID: 2075912855}
   PlayerMaxHp: 1
   CollectGold: 0
   MaxCollectGold: 9999
