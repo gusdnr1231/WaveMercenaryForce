@@ -31,12 +31,13 @@ public class PurchaseElement : MonoBehaviour, IPoolable
 
     private void Start()
     {
-        SetBuyCharacter(datas[Random.Range(0, datas.Length - 1)]);
+        //SetBuyCharacter(datas[Random.Range(0, datas.Length)]);
     }
 
     private void BuyElement()
     {
-        if (GameManager.Instance.GoldChangeToValue(_costValue))
+        if (BuyCharacter == null) return;
+        if (GameManager.Instance.GoldChangeToValue(-_costValue))
         {
             var evt = SpawnEvents.PlayerCharacterCreate;
             evt.pos = Vector3.zero;

@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,12 +100,12 @@ TextureImporter:
       name: Soldier_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 700
-        width: 100
-        height: 100
+        x: 25
+        y: 725
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -121,12 +121,12 @@ TextureImporter:
       name: Soldier_1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 700
-        width: 100
-        height: 100
+        x: 125
+        y: 725
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,12 +142,12 @@ TextureImporter:
       name: Soldier_2
       rect:
         serializedVersion: 2
-        x: 200
-        y: 700
-        width: 100
-        height: 100
+        x: 225
+        y: 725
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,12 +163,12 @@ TextureImporter:
       name: Soldier_3
       rect:
         serializedVersion: 2
-        x: 300
-        y: 700
-        width: 100
-        height: 100
+        x: 325
+        y: 725
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: Soldier_4
       rect:
         serializedVersion: 2
-        x: 400
-        y: 700
-        width: 100
-        height: 100
+        x: 425
+        y: 725
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Soldier_5
       rect:
         serializedVersion: 2
-        x: 500
-        y: 700
-        width: 100
-        height: 100
+        x: 525
+        y: 725
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,12 +226,12 @@ TextureImporter:
       name: Soldier_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 600
-        width: 100
-        height: 100
+        x: 25
+        y: 625
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -247,12 +247,12 @@ TextureImporter:
       name: Soldier_7
       rect:
         serializedVersion: 2
-        x: 100
-        y: 600
-        width: 100
-        height: 100
+        x: 125
+        y: 625
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -268,12 +268,12 @@ TextureImporter:
       name: Soldier_8
       rect:
         serializedVersion: 2
-        x: 200
-        y: 600
-        width: 100
-        height: 100
+        x: 225
+        y: 625
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -289,12 +289,12 @@ TextureImporter:
       name: Soldier_9
       rect:
         serializedVersion: 2
-        x: 300
-        y: 600
-        width: 100
-        height: 100
+        x: 325
+        y: 625
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -310,12 +310,12 @@ TextureImporter:
       name: Soldier_10
       rect:
         serializedVersion: 2
-        x: 400
-        y: 600
-        width: 100
-        height: 100
+        x: 425
+        y: 625
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -331,12 +331,12 @@ TextureImporter:
       name: Soldier_11
       rect:
         serializedVersion: 2
-        x: 500
-        y: 600
-        width: 100
-        height: 100
+        x: 525
+        y: 625
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -352,12 +352,12 @@ TextureImporter:
       name: Soldier_12
       rect:
         serializedVersion: 2
-        x: 600
-        y: 600
-        width: 100
-        height: 100
+        x: 625
+        y: 625
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -373,12 +373,12 @@ TextureImporter:
       name: Soldier_13
       rect:
         serializedVersion: 2
-        x: 700
-        y: 600
-        width: 100
-        height: 100
+        x: 725
+        y: 625
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -394,12 +394,12 @@ TextureImporter:
       name: Soldier_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 500
-        width: 100
-        height: 100
+        x: 25
+        y: 525
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -415,12 +415,12 @@ TextureImporter:
       name: Soldier_15
       rect:
         serializedVersion: 2
-        x: 100
-        y: 500
-        width: 100
-        height: 100
+        x: 125
+        y: 525
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -436,12 +436,12 @@ TextureImporter:
       name: Soldier_16
       rect:
         serializedVersion: 2
-        x: 200
-        y: 500
-        width: 100
-        height: 100
+        x: 225
+        y: 525
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -457,12 +457,12 @@ TextureImporter:
       name: Soldier_17
       rect:
         serializedVersion: 2
-        x: 300
-        y: 500
-        width: 100
-        height: 100
+        x: 325
+        y: 525
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -478,12 +478,12 @@ TextureImporter:
       name: Soldier_18
       rect:
         serializedVersion: 2
-        x: 400
-        y: 500
-        width: 100
-        height: 100
+        x: 425
+        y: 525
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -499,12 +499,12 @@ TextureImporter:
       name: Soldier_19
       rect:
         serializedVersion: 2
-        x: 500
-        y: 500
-        width: 100
-        height: 100
+        x: 525
+        y: 525
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -520,12 +520,12 @@ TextureImporter:
       name: Soldier_20
       rect:
         serializedVersion: 2
-        x: 0
-        y: 400
-        width: 100
-        height: 100
+        x: 25
+        y: 425
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -541,12 +541,12 @@ TextureImporter:
       name: Soldier_21
       rect:
         serializedVersion: 2
-        x: 100
-        y: 400
-        width: 100
-        height: 100
+        x: 125
+        y: 425
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -562,12 +562,12 @@ TextureImporter:
       name: Soldier_22
       rect:
         serializedVersion: 2
-        x: 200
-        y: 400
-        width: 100
-        height: 100
+        x: 225
+        y: 425
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -583,12 +583,12 @@ TextureImporter:
       name: Soldier_23
       rect:
         serializedVersion: 2
-        x: 300
-        y: 400
-        width: 100
-        height: 100
+        x: 325
+        y: 425
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -604,12 +604,12 @@ TextureImporter:
       name: Soldier_24
       rect:
         serializedVersion: 2
-        x: 400
-        y: 400
-        width: 100
-        height: 100
+        x: 425
+        y: 425
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -625,12 +625,12 @@ TextureImporter:
       name: Soldier_25
       rect:
         serializedVersion: 2
-        x: 500
-        y: 400
-        width: 100
-        height: 100
+        x: 525
+        y: 425
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -646,12 +646,12 @@ TextureImporter:
       name: Soldier_26
       rect:
         serializedVersion: 2
-        x: 0
-        y: 300
-        width: 100
-        height: 100
+        x: 25
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -667,12 +667,12 @@ TextureImporter:
       name: Soldier_27
       rect:
         serializedVersion: 2
-        x: 100
-        y: 300
-        width: 100
-        height: 100
+        x: 125
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -688,12 +688,12 @@ TextureImporter:
       name: Soldier_28
       rect:
         serializedVersion: 2
-        x: 200
-        y: 300
-        width: 100
-        height: 100
+        x: 225
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -709,12 +709,12 @@ TextureImporter:
       name: Soldier_29
       rect:
         serializedVersion: 2
-        x: 300
-        y: 300
-        width: 100
-        height: 100
+        x: 325
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -730,12 +730,12 @@ TextureImporter:
       name: Soldier_30
       rect:
         serializedVersion: 2
-        x: 400
-        y: 300
-        width: 100
-        height: 100
+        x: 425
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -751,12 +751,12 @@ TextureImporter:
       name: Soldier_31
       rect:
         serializedVersion: 2
-        x: 500
-        y: 300
-        width: 100
-        height: 100
+        x: 525
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -772,12 +772,12 @@ TextureImporter:
       name: Soldier_32
       rect:
         serializedVersion: 2
-        x: 600
-        y: 300
-        width: 100
-        height: 100
+        x: 625
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -793,12 +793,12 @@ TextureImporter:
       name: Soldier_33
       rect:
         serializedVersion: 2
-        x: 700
-        y: 300
-        width: 100
-        height: 100
+        x: 725
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -814,12 +814,12 @@ TextureImporter:
       name: Soldier_34
       rect:
         serializedVersion: 2
-        x: 800
-        y: 300
-        width: 100
-        height: 100
+        x: 825
+        y: 325
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -835,12 +835,12 @@ TextureImporter:
       name: Soldier_35
       rect:
         serializedVersion: 2
-        x: 0
-        y: 200
-        width: 100
-        height: 100
+        x: 25
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -856,12 +856,12 @@ TextureImporter:
       name: Soldier_36
       rect:
         serializedVersion: 2
-        x: 100
-        y: 200
-        width: 100
-        height: 100
+        x: 125
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -877,12 +877,12 @@ TextureImporter:
       name: Soldier_37
       rect:
         serializedVersion: 2
-        x: 200
-        y: 200
-        width: 100
-        height: 100
+        x: 225
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -898,12 +898,12 @@ TextureImporter:
       name: Soldier_38
       rect:
         serializedVersion: 2
-        x: 300
-        y: 200
-        width: 100
-        height: 100
+        x: 325
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -919,12 +919,12 @@ TextureImporter:
       name: Soldier_39
       rect:
         serializedVersion: 2
-        x: 400
-        y: 200
-        width: 100
-        height: 100
+        x: 425
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -940,12 +940,12 @@ TextureImporter:
       name: Soldier_40
       rect:
         serializedVersion: 2
-        x: 500
-        y: 200
-        width: 100
-        height: 100
+        x: 525
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -961,12 +961,12 @@ TextureImporter:
       name: Soldier_41
       rect:
         serializedVersion: 2
-        x: 600
-        y: 200
-        width: 100
-        height: 100
+        x: 625
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -982,12 +982,12 @@ TextureImporter:
       name: Soldier_42
       rect:
         serializedVersion: 2
-        x: 700
-        y: 200
-        width: 100
-        height: 100
+        x: 725
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1003,12 +1003,12 @@ TextureImporter:
       name: Soldier_43
       rect:
         serializedVersion: 2
-        x: 800
-        y: 200
-        width: 100
-        height: 100
+        x: 825
+        y: 225
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1024,12 +1024,12 @@ TextureImporter:
       name: Soldier_44
       rect:
         serializedVersion: 2
-        x: 0
-        y: 100
-        width: 100
-        height: 100
+        x: 25
+        y: 125
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1045,12 +1045,12 @@ TextureImporter:
       name: Soldier_45
       rect:
         serializedVersion: 2
-        x: 100
-        y: 100
-        width: 100
-        height: 100
+        x: 125
+        y: 125
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1066,12 +1066,12 @@ TextureImporter:
       name: Soldier_46
       rect:
         serializedVersion: 2
-        x: 200
-        y: 100
-        width: 100
-        height: 100
+        x: 225
+        y: 125
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1087,12 +1087,12 @@ TextureImporter:
       name: Soldier_47
       rect:
         serializedVersion: 2
-        x: 300
-        y: 100
-        width: 100
-        height: 100
+        x: 325
+        y: 125
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1108,12 +1108,12 @@ TextureImporter:
       name: Soldier_48
       rect:
         serializedVersion: 2
-        x: 400
-        y: 100
-        width: 100
-        height: 100
+        x: 425
+        y: 125
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1129,12 +1129,12 @@ TextureImporter:
       name: Soldier_49
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 100
-        height: 100
+        x: 25
+        y: 25
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1150,12 +1150,12 @@ TextureImporter:
       name: Soldier_50
       rect:
         serializedVersion: 2
-        x: 100
-        y: 0
-        width: 100
-        height: 100
+        x: 125
+        y: 25
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1171,12 +1171,12 @@ TextureImporter:
       name: Soldier_51
       rect:
         serializedVersion: 2
-        x: 200
-        y: 0
-        width: 100
-        height: 100
+        x: 225
+        y: 25
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1192,12 +1192,12 @@ TextureImporter:
       name: Soldier_52
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 100
-        height: 100
+        x: 325
+        y: 25
+        width: 50
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
