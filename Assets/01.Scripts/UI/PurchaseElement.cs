@@ -15,7 +15,6 @@ public class PurchaseElement : MonoBehaviour, IPoolable
     [SerializeField] private Image CharacterImage;
     [SerializeField] private TextMeshProUGUI CharacterName;
     [SerializeField] private TextMeshProUGUI CharacterCost;
-    [SerializeField] private PlayerCharacterDataSO[] datas;
 
     private Button InteractionButton;
     public PlayerCharacterDataSO BuyCharacter { get; private set; }
@@ -27,11 +26,6 @@ public class PurchaseElement : MonoBehaviour, IPoolable
         
         InteractionButton.onClick.RemoveAllListeners();
         InteractionButton.onClick.AddListener(() => BuyElement());
-    }
-
-    private void Start()
-    {
-        //SetBuyCharacter(datas[Random.Range(0, datas.Length)]);
     }
 
     private void BuyElement()
