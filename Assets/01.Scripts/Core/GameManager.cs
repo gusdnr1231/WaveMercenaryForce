@@ -70,7 +70,10 @@ public class GameManager : Manager<GameManager>
     protected override void Awake()
     {
         base.Awake();
+
         if(_poolManager != null) _poolManager.InitializePool(PoolParentObj.transform);
+
+        GoldChangeToFixed(0);
     }
 
     private void Start()
@@ -106,12 +109,16 @@ public class GameManager : Manager<GameManager>
 
     public bool GoldChangeToValue(int changeValue)
     {
-        //바뀌는 값이 음수일 때, 만약 소모한 이후 값이 0보다 작을 경우 실행하지 않음
-        if(changeValue < 0) if(CanUseGold(changeValue) == false) return false;
+        // 바뀌는 값이 음수일 때, 소모한 이후 값이 0보다 작을 경우 실행하지 않음
+        if (changeValue < 0 && !CanUseGold(-changeValue)) // 골드가 충분한지 확인
+        {
+            return false;
+        }
+
         CollectGold += changeValue;
         CollectGold = Mathf.Clamp(CollectGold, 0, MaxCollectGold);
         OnChangeGold?.Invoke(CollectGold);
-        
+
         return true;
     }
 

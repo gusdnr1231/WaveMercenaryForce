@@ -165,7 +165,7 @@ RectTransform:
   m_GameObject: {fileID: 1049067020587268911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1000773811346993741}
@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960bd59c9386d0f49a1298a25b4952ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PoolType>k__BackingField: {fileID: 0}
-  SpawnChannel: {fileID: 0}
+  <PoolType>k__BackingField: {fileID: 11400000, guid: 50d94b8db1425304f9652e8b3f7b0360, type: 2}
+  SpawnChannel: {fileID: 11400000, guid: 6ce1b6f69229d4f45bbf173505c12149, type: 2}
   CharacterImage: {fileID: 4938849202305996904}
   CharacterName: {fileID: 5263615493598736108}
   CharacterCost: {fileID: 3622496259359394144}

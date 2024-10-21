@@ -58,7 +58,7 @@ public class GameEventChannelSO : ScriptableObject
     //이벤트 실행
     public void RasieEvent(GameEvent evt)
     {
-        if(_events.TryGetValue(evt.GetType(), out Action<GameEvent> handlers))
+        if (_events.TryGetValue(evt.GetType(), out Action<GameEvent> handlers))
         {
             handlers?.Invoke(evt);
         }

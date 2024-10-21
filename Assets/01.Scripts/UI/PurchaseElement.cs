@@ -31,13 +31,15 @@ public class PurchaseElement : MonoBehaviour, IPoolable
     private void BuyElement()
     {
         if (BuyCharacter == null) return;
+        if (CharacterManager.Instance.CanAddCharacter == false) return;
+
         if (GameManager.Instance.GoldChangeToValue(-_costValue))
         {
             var evt = SpawnEvents.PlayerCharacterCreate;
             evt.pos = Vector3.zero;
             evt.rot = Vector3.zero;
             evt.plcData = BuyCharacter;
-            Debug.Log(evt.ToString());
+            SpawnChannel.RasieEvent(evt);
         }
 
     }

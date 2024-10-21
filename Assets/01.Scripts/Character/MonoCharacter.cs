@@ -78,11 +78,7 @@ public abstract class MonoCharacter : MonoBehaviour, IPoolable
     protected virtual void GetDataFromDataBase()
     {
         characterStat = CharacterDataBase.StatusData;
-        Debug.Log(characterStat);
         characterSpirit = CharacterDataBase.CharacterSpirit;
-        Debug.Log(characterSpirit.DefaultSpirit);
-        Debug.Log(characterSpirit.CurrentSpirit);
-        Debug.Log(characterSpirit.MaxSpirit);
     }
 
     public virtual void SetCharacterData(BaseCharacterDataSO initData)
