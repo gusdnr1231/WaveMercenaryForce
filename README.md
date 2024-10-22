@@ -1,1 +1,2 @@
-# WaveMercenaryForce
+# 출동! 파도 용병단
+장르: 오토 배틀러, 전략
