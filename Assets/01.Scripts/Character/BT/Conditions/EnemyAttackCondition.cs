@@ -2,18 +2,18 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-[TaskCategory("Custom_Player")]
-public class PlayerAttackCondition : Conditional
+[TaskCategory("Custom_Enemy")]
+public class EnemyAttackCondition : Conditional
 {
-    public SharedPCharacter Player;
+    public SharedECharacter Enemy;
 
-    private PlayerAttack _attack;
+    private EnemyAttack _attack;
 
     public override void OnAwake()
     {
-        if (Player.Value != null)
+        if (Enemy.Value != null)
         {
-            _attack = Player.Value.GetCompo<PlayerAttack>();
+            _attack = Enemy.Value.GetCompo<EnemyAttack>();
         }
     }
 
@@ -28,7 +28,7 @@ public class PlayerAttackCondition : Conditional
         {
             return TaskStatus.Success;
         }
-        else if(_attack.CanAttack == false)
+        else if (_attack.CanAttack == false)
         {
             return TaskStatus.Failure;
         }

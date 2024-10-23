@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[TaskCategory("Custom")]
+[TaskCategory("Custom_Player")]
 public class PlayerStopAction : Action
 {
     public SharedPCharacter Player;

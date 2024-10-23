@@ -39,26 +39,23 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
         _components.Values.ToList().ForEach(compo => compo.AfterInitilize());
 
-        if(TryGetComponent(out _tree))
-        {
-            _tree.StartWhenEnabled = true;
-            _tree.PauseWhenDisabled = true;
+        if (_tree == null) _tree = GetComponent<BehaviorTree>();
+        _tree.StartWhenEnabled = true;
+        _tree.PauseWhenDisabled = true;
 
-            _tree.SetVariableValue("plc", this);
-            _tree.SetVariable("isAlive", _isAlive);
+        _tree.SetVariableValue("plc", this);
+        _tree.SetVariable("isAlive", _isAlive);
 
-            _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
-            _target = _tree.GetVariable("target") as SharedTransform;
-            _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
+        _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
+        _target = _tree.GetVariable("target") as SharedTransform;
+        _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
 
-            _tree.enabled = false;
-        }
+        _tree.enabled = false;
     }
 
     private void Start()
     {
         mng_Game = GameManager.Instance.GetInstance();
-        mng_Game.OnActionRound += HandleStartRound;
     }
 
     public T GetCompo<T>() where T : class
@@ -103,9 +100,9 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         GetDataFromDataBase();
     }
 
-    private void HandleStartRound(bool Action)
+    public override void HandleStartBattlePhase(bool Action)
     {
-        if(_tree == null)
+        if (_tree == null)
         {
             Debug.LogError("BT is not assigned");
             return;
@@ -113,9 +110,9 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
         if (Action == true)
         {
-            _tree.enabled = true;
-            
             SetDefaultData();
+            _tree.enabled = true;
+
             StartCharacter?.Invoke();
         }
         else if (Action == false)
@@ -189,6 +186,8 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         _isAlive = false;
         OnDeadEvent?.Invoke();
         Debug.Log($"{this.name} is Dead");
+
+        this.gameObject.SetActive(false);
     }
 
     #endregion
@@ -198,6 +197,28 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     public override void SetUpPool(Pool pool)
     {
         base.SetUpPool(pool);
+
+        plcData = CharacterDataBase as PlayerCharacterDataSO;
+
+        _components = new Dictionary<Type, IPlayerComponent>();
+        GetComponentsInChildren<IPlayerComponent>().ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
+
+        _components.Values.ToList().ForEach(compo => compo.Initilize(this));
+
+        _components.Values.ToList().ForEach(compo => compo.AfterInitilize());
+
+        if (_tree == null) _tree = GetComponent<BehaviorTree>();
+        _tree.StartWhenEnabled = true;
+        _tree.PauseWhenDisabled = true;
+
+        _tree.SetVariableValue("plc", this);
+        _tree.SetVariable("isAlive", _isAlive);
+
+        _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
+        _target = _tree.GetVariable("target") as SharedTransform;
+        _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
+
+        _tree.enabled = false;
     }
 
     public override void ResetItem()

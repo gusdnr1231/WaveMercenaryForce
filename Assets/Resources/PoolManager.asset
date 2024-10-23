@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: PoolManager
   m_EditorClassIdentifier: 
   poolingItems:
+  - {fileID: 11400000, guid: d209b1e78a3504f4c9ae77e4d15a4acf, type: 2}
   - {fileID: 11400000, guid: 221c35d6e9638934d81c8bfb35c67100, type: 2}
+  - {fileID: 11400000, guid: 0b9ffe1a9ad1c024eb0f5db01762df57, type: 2}
   _rootTrm: {fileID: 0}

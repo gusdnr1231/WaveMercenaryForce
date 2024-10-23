@@ -63,7 +63,7 @@ public class GameManager : Manager<GameManager>
     public event Action<int, int> OnUpdateLevel;
     public event Action<bool> IsPause;
     public event Action<bool> OnActionWait;
-    public event Action<bool> OnActionRound;
+    public event Action<bool> OnActionBattlePhase;
 
     #endregion
 
@@ -80,6 +80,13 @@ public class GameManager : Manager<GameManager>
     {
         playerHp = PlayerMaxHp;
         SetLevel();
+
+        CharacterManager.Instance.CreateEnemyCharacter += AddRemainEnemy;
+
+        DeployCharacters = new List<PlayerCharacter>();
+        RemainEnemys = new List<EnemyCharacter>();
+        
+        OnActionBattlePhase?.Invoke(IsStartBattlePhase);
     }
 
     private void Update()
@@ -88,6 +95,10 @@ public class GameManager : Manager<GameManager>
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PauseGame(true);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            PauseGame(false);
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -159,21 +170,27 @@ public class GameManager : Manager<GameManager>
 
     public void AddDeployCharacters(PlayerCharacter add)
     {
+        Debug.Log(add.CharacterDataBase.name);
         DeployCharacters.Add(add);
+        OnActionBattlePhase += add.HandleStartBattlePhase;
     }
 
     public void RemoveDeployCharacters(PlayerCharacter remove)
     {
+        Debug.Log(remove.CharacterDataBase.name);
+        OnActionBattlePhase -= remove.HandleStartBattlePhase;
         DeployCharacters.Remove(remove);
     }
 
     public void AddRemainEnemy(EnemyCharacter add)
     {
         RemainEnemys.Add(add);
+        OnActionBattlePhase += add.HandleStartBattlePhase;
     }
 
-    public void RemoceRemainEnemy(EnemyCharacter remove)
+    public void RemoveRemainEnemy(EnemyCharacter remove)
     {
+        OnActionBattlePhase -= remove.HandleStartBattlePhase;
         RemainEnemys.Remove(remove);
     }
 
@@ -182,21 +199,22 @@ public class GameManager : Manager<GameManager>
     #region Play Flow
 
     private Phase GamePhase = Phase.Setting;
-    private bool IsStartRound = false;
+    private bool IsStartBattlePhase = false;
 
     public void StarBattlePhase()
     {
-        if (IsStartRound) return;
-        IsStartRound = true;
-        StartBattleTimer();
+        if (IsStartBattlePhase) return;
+        IsStartBattlePhase = true;
+        OnActionBattlePhase?.Invoke(IsStartBattlePhase);
 
-        OnActionRound?.Invoke(IsStartRound);
+        StartBattleTimer();
     }
 
     public void EndBattlePhase()
     {
-        if (!IsStartRound) return;
-        IsStartRound = false;
+        if (!IsStartBattlePhase) return;
+        IsStartBattlePhase = false;
+        OnActionBattlePhase?.Invoke(IsStartBattlePhase);
 
         if (IsWinRound == false)
         {
@@ -209,7 +227,6 @@ public class GameManager : Manager<GameManager>
         }
 
         StartSettingTimer();
-        OnActionRound?.Invoke(IsStartRound);
     }
 
     public void PauseGame(bool pause)
@@ -275,12 +292,8 @@ public class GameManager : Manager<GameManager>
 
         while (RemainTime > 0)
         {
-            #if UNITY_EDITOR
-            yield return new WaitForSeconds(0.03f);
-            #else
             yield return new WaitForSeconds(1f);
-            #endif
-                remainTime--;
+            remainTime--;
             OnUpdateTimer?.Invoke(RemainTime); // 시간 업데이트
 
             // 전투 중에 모든 적이 제거되면 라운드 종료

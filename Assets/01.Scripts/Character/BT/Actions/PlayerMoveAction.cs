@@ -2,7 +2,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-[TaskCategory("Custom")]
+[TaskCategory("Custom_Player")]
 public class PlayerMoveAction : Action
 {
     public SharedPCharacter Player;
@@ -18,15 +18,13 @@ public class PlayerMoveAction : Action
         _lastCalcTime = Time.time;
 
         _movement = Player.Value.GetCompo<PlayerMovement>();
-
-        _movement.SetSpeed(Player.Value.characterStat.MoveSpeed.StatValue);
     }
 
     public override void OnStart()
     {
+        _movement.SetStop(false);
         _movement.SetSpeed(Player.Value.characterStat.MoveSpeed.StatValue);
         _movement.SetDestination(TargetTrm.Value.position);
-        _movement.SetStop(false);
     }
 
     public override TaskStatus OnUpdate()

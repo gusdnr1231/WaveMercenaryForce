@@ -86,6 +86,8 @@ public abstract class MonoCharacter : MonoBehaviour, IPoolable
         CharacterDataBase = initData;
     }
 
+    public abstract void HandleStartBattlePhase(bool Action);
+
     #region IPoolable Methods
 
     public virtual void SetUpPool(Pool pool)

@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 3082462856159743202}
   - component: {fileID: 2629217978857609295}
   - component: {fileID: 4641174623671803017}
+  - component: {fileID: 8694815898433582631}
   - component: {fileID: 3630793007450931107}
   - component: {fileID: 6982485737458318025}
   m_Layer: 7
@@ -226,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PoolType>k__BackingField: {fileID: 11400000, guid: 89570f7670af9bc4fb5806766af45d44, type: 2}
-  CharacterDataBase: {fileID: 11400000, guid: 922facd4f03e5c441bc2aed0eb0d531d, type: 2}
+  <CharacterDataBase>k__BackingField: {fileID: 0}
   CharacterProficiency: 0
   characterSpirit:
     DefaultSpirit: 0
@@ -289,6 +290,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackData: {fileID: 0}
   skillData: {fileID: 0}
+--- !u!114 &8694815898433582631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8786445191320148644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f293190943745e4aad7465ceb0e38e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WhatIsEnadle:
+    serializedVersion: 2
+    m_Bits: 512
+  CanDragging: 1
 --- !u!143 &3630793007450931107
 CharacterController:
   m_ObjectHideFlags: 0

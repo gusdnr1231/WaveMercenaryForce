@@ -35,7 +35,7 @@ public class UIManager : Manager<UIManager>
 
         mng_Game.OnUpdateTimer += HandleTimer;
         mng_Game.OnChangeGold += HandleGold;
-        mng_Game.OnActionRound += HandleActiveRound;
+        mng_Game.OnActionBattlePhase += HandleActiveRound;
 
         mng_Game.OnUpdateLevel += HandleBuildingLevel;
         mng_Game.OnUpdateExp += HandleBuildingExp;

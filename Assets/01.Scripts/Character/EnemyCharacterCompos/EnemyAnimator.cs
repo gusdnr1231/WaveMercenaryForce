@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimator : MonoChacarterAnimator, IEnemyComponent
@@ -25,6 +24,12 @@ public class EnemyAnimator : MonoChacarterAnimator, IEnemyComponent
 
     public void AfterInitilize()
     {
+        _emc.OnChangeCharacterData += HandleChangeAnimController;
+    }
+
+    private void HandleChangeAnimController(EnemyCharacterDataSO initData)
+    {
+        if (_animator != null) _animator.runtimeAnimatorController = initData.CharacterAnimator;
     }
 
     //애니메이션 이벤트로 실행되는 함수 (공격 시작 타이밍)

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour, IPlayerComponent
 {
-    [Header("공격 정보 (추후 캐릭터 데이터로 전부 합칠 예정)")]
-    public AttackData attackData;
-    public AttackData skillData;
+    [Header("공격 정보")]
+    private AttackData attackData;
+    private AttackData skillData;
 
     private Transform AttackTarget;
 
@@ -29,9 +29,17 @@ public class PlayerAttack : MonoBehaviour, IPlayerComponent
 
     public void AfterInitilize()
     {
+        _plc.OnChangeCharacterData += HandleChangeAttackData;
+
         _animator.OnStartAttackAnim += ActionAttack;
         _animator.OnExcuteAttackAnim += ExcuteAttack;
         _animator.OnEndAttackAnim += EndAttack;
+    }
+
+    private void HandleChangeAttackData(PlayerCharacterDataSO data)
+    {
+        attackData = data.CharacterAttack;
+        skillData = data.CharacterSkill;
     }
 
     #region 기본 공격 부분

@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
-    [SerializeField] private LayerMask WhatIsGround;
+    [SerializeField] private LayerMask WhatIsEnadle;
+    public bool CanDragging = true;
 
     private bool isDragging = false;
 
-    private MonoCharacter character;
+    private PlayerCharacter character;
     private CharacterController characterController;
     private Vector3 DefaultPosition;
 
@@ -14,32 +15,35 @@ public class DragDrop : MonoBehaviour
 
     private void Awake()
     {
-        character = GetComponent<MonoCharacter>();
+        character = GetComponent<PlayerCharacter>();
         characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
+        // 드래그가 가능할 때
+        if (!CanDragging) return;
         // 마우스 버튼이 눌리고 드래그 중일 때
-        if (isDragging)
-        {
-            // 마우스의 월드 좌표를 가져온다
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+        if (!isDragging) return;
 
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        // 마우스의 월드 좌표를 가져온다
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
 
-            //Debug.Log(worldPos);
-            Physics.Raycast(new Ray(worldPos, Vector3.down), out hit, 30f, WhatIsGround);
-            Debug.Log(hit.collider);
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
 
-            // CharacterController의 이동
-            character.SetCharacterPosition(new Vector3(worldPos.x, hit.point.y, worldPos.z));
-        }
+        //Debug.Log(worldPos);
+        Physics.Raycast(new Ray(worldPos, Vector3.down), out hit, 30f, WhatIsEnadle);
+        Debug.Log(hit.collider);
+
+        // CharacterController의 이동
+        character.SetCharacterPosition(new Vector3(worldPos.x, hit.point.y, worldPos.z));
     }
 
     private void OnMouseDown()
     {
+        if (!CanDragging) return;
+
         CameraManager.Instance.MoveCamera(1);
         DefaultPosition = transform.position;
         isDragging = true;
@@ -49,8 +53,11 @@ public class DragDrop : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (!CanDragging) return;
+
         if (hit.collider == null)
         {
+            GameManager.Instance.AddDeployCharacters(character);
             character.SetCharacterPosition(DefaultPosition);
         }
         isDragging = false;

@@ -2,7 +2,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-[TaskCategory("Custom")]
+[TaskCategory("Custom_Enemy")]
 public class EnemyMoveAction : Action
 {
     public SharedECharacter Enemy;
@@ -18,14 +18,13 @@ public class EnemyMoveAction : Action
         _lastCalcTime = Time.time;
 
         _movement = Enemy.Value.GetCompo<EnemyMovement>();
-
-        _movement.SetSpeed(Enemy.Value.characterStat.MoveSpeed.StatValue);
-        _movement.SetStop(false);
     }
 
     public override void OnStart()
     {
+        _movement.SetStop(false);
         _movement.SetDestination(TargetTrm.Value.position);
+        _movement.SetSpeed(Enemy.Value.characterStat.MoveSpeed.StatValue);
     }
 
     public override TaskStatus OnUpdate()
