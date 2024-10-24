@@ -9,7 +9,7 @@ public class FindTargetAction : Action
     public LayerMask TargetLayer; // 타겟이 포함된 레이어
     public float searchRadius = 10000f; // 탐색 반경을 매우 크게 설정
 
-    // 캐싱된 배열 (최대 타겟 수 100개로 설정, 필요에 따라 조정)
+    // 캐싱된 배열 (최대 타겟 수 10개로 설정, 필요에 따라 조정)
     private Collider[] cachedColliders = new Collider[10];
 
     public override TaskStatus OnUpdate()

@@ -57,9 +57,13 @@ public class DragDrop : MonoBehaviour
 
         if (hit.collider == null)
         {
-            GameManager.Instance.AddDeployCharacters(character);
             character.SetCharacterPosition(DefaultPosition);
         }
+        else
+        {
+            GameManager.Instance.AddDeployCharacters(character);
+        }
+
         isDragging = false;
         CameraManager.Instance.MoveCamera(0);
 

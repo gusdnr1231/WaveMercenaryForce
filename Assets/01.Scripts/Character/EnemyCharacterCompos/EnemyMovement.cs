@@ -34,8 +34,15 @@ public class EnemyMovement : MonoBehaviour, IEnemyComponent
 
     public void SetDestination(Vector3 destination)
     {
-        CharacterAgent.SetDestination(destination);
-        MoveToDirection?.Invoke(destination);
+        if (CharacterAgent.isOnNavMesh)
+        {
+            CharacterAgent.SetDestination(destination);
+            MoveToDirection?.Invoke(destination);
+        }
+        else
+        {
+            Debug.LogWarning("NavMeshAgent is not on a valid NavMesh!");
+        }
     }
 
     public void SetSpeed(float speed) => CharacterAgent.speed = speed;

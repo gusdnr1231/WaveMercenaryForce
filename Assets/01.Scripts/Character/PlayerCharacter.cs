@@ -28,7 +28,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
     protected Dictionary<Type, IPlayerComponent> _components;
 
-    private void Awake()
+    /*private void Awake()
     {
         plcData = CharacterDataBase as PlayerCharacterDataSO;
 
@@ -51,12 +51,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
 
         _tree.enabled = false;
-    }
-
-    private void Start()
-    {
-        mng_Game = GameManager.Instance.GetInstance();
-    }
+    }*/
 
     public T GetCompo<T>() where T : class
     {
@@ -76,6 +71,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     private void SetDefaultData()
     {
         _isAlive.Value = true;
+        _tree.SetVariableValue("isAlive", _isAlive);
         characterStat.SetValues(CharacterProficiency);
 
         currentHp = characterStat.MaxHp.StatValue;
@@ -110,8 +106,8 @@ public class PlayerCharacter : MonoCharacter, IDamageable
 
         if (Action == true)
         {
-            SetDefaultData();
             _tree.enabled = true;
+            SetDefaultData();
 
             StartCharacter?.Invoke();
         }
@@ -184,6 +180,8 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     public void ActiveDead()
     {
         _isAlive = false;
+        _tree.enabled = false;
+
         OnDeadEvent?.Invoke();
         Debug.Log($"{this.name} is Dead");
 

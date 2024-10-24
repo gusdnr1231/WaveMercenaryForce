@@ -288,8 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b64a9c4eb6cb6546a8b36c73458439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackData: {fileID: 0}
-  skillData: {fileID: 0}
 --- !u!114 &8694815898433582631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,4 +351,4 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 3

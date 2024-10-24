@@ -41,8 +41,8 @@ public class GameManager : Manager<GameManager>
     [Header("인게임 플레이 수치")]
     [Tooltip("페이즈 변경 대기 시간")]
     [Range(0f, 5f)] public float WaitPhaseChangeTime = 3f;
-    [Tooltip("세팅 페이즈 시간")]
-    [Range(60, 180)] public int MaxSettingTime = 120;
+    [Tooltip("준비 페이즈 시간")]
+    [Range(20, 180)] public int MaxSettingTime = 120;
     [Tooltip("배틀 페이즈 시간")]
     [Range(60, 300)] public int MaxBattleTime = 240;
     private int remainTime;

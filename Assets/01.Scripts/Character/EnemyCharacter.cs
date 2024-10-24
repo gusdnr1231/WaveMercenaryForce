@@ -1,9 +1,7 @@
 using BehaviorDesigner.Runtime;
-using BehaviorDesigner.Runtime.Tasks.Unity.UnityParticleSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using UnityEngine;
 
 public class EnemyCharacter : MonoCharacter, IDamageable
@@ -28,31 +26,6 @@ public class EnemyCharacter : MonoCharacter, IDamageable
 
     protected Dictionary<Type, IEnemyComponent> _components;
 
-    private void Awake()
-    {
-        emcData = CharacterDataBase as EnemyCharacterDataSO;
-
-        _components = new Dictionary<Type, IEnemyComponent>();
-        GetComponentsInChildren<IEnemyComponent>().ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
-
-        _components.Values.ToList().ForEach(compo => compo.Initilize(this));
-
-        _components.Values.ToList().ForEach(compo => compo.AfterInitilize());
-
-        if (_tree == null) _tree = GetComponent<BehaviorTree>();
-        _tree.StartWhenEnabled = true;
-        _tree.PauseWhenDisabled = true;
-
-        _tree.SetVariableValue("emc", this);
-        _tree.SetVariable("isAlive", _isAlive);
-
-        _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
-        _target = _tree.GetVariable("target") as SharedTransform;
-        _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
-
-        _tree.enabled = false;
-    }
-
     public T GetCompo<T>() where T : class
     {
         if (_components.TryGetValue(typeof(T), out IEnemyComponent compo))
@@ -71,6 +44,7 @@ public class EnemyCharacter : MonoCharacter, IDamageable
     private void SetDefaultData()
     {
         _isAlive.Value = true;
+        _tree.SetVariableValue("isAlive", _isAlive);
         characterStat.SetValues(CharacterProficiency);
 
         currentHp = characterStat.MaxHp.StatValue;
@@ -108,10 +82,12 @@ public class EnemyCharacter : MonoCharacter, IDamageable
             return;
         }
 
+        Debug.Log("Acitve HandleStartBattlePhase");
+
         if (Action == true)
         {
-            SetDefaultData();
             _tree.enabled = true;
+            SetDefaultData();
 
             StartCharacter?.Invoke();
         }
@@ -176,6 +152,8 @@ public class EnemyCharacter : MonoCharacter, IDamageable
     public void ActiveDead()
     {
         _isAlive = false;
+        _tree.enabled = false;
+
         GameManager.Instance.RemoveRemainEnemy(this);
         OnDeadEvent?.Invoke();
         Debug.Log($"{this.name} is Dead");
