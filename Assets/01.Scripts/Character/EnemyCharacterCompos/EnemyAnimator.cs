@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyAnimator : MonoChacarterAnimator, IEnemyComponent
 {
     private EnemyCharacter _emc;
-    private EnemyMovement _movement;
+    private CharacterMovement _movement;
     private EnemyAttack _attack;
 
     public event Action OnStartAttackAnim;
@@ -16,7 +16,7 @@ public class EnemyAnimator : MonoChacarterAnimator, IEnemyComponent
         _emc = emc;
         _character = emc;
 
-        _movement = emc.GetCompo<EnemyMovement>();
+        _movement = emc.GetCompo<CharacterMovement>();
         _attack = emc.GetCompo<EnemyAttack>();
 
         _animator = GetComponent<Animator>();

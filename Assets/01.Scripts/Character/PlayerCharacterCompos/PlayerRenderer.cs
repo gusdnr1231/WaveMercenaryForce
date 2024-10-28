@@ -8,7 +8,7 @@ public class PlayerRenderer : MonoBehaviour, IPlayerComponent
     //private readonly int _disappearPropertyId = Shader.PropertyToID("_Disappear");
 
     private PlayerCharacter _plc;
-    private PlayerMovement _movement;
+    private CharacterMovement _movement;
 
     private SpriteRenderer _spriteRenderer;
     private Material characterMat;
@@ -16,7 +16,7 @@ public class PlayerRenderer : MonoBehaviour, IPlayerComponent
     public void Initilize(PlayerCharacter plc)
     {
         _plc = plc;
-        _movement = plc.GetCompo<PlayerMovement>();
+        _movement = plc.GetCompo<CharacterMovement>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
         characterMat = _spriteRenderer.material;

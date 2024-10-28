@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoChacarterAnimator, IPlayerComponent
 {
     private PlayerCharacter _plc;
-    private PlayerMovement _movement;
+    private CharacterMovement _movement;
     private PlayerAttack _attack;
 
     public event Action OnStartAttackAnim;
@@ -16,7 +16,7 @@ public class PlayerAnimator : MonoChacarterAnimator, IPlayerComponent
         _plc = plc;
         _character = plc;
 
-        _movement = plc.GetCompo<PlayerMovement>();
+        _movement = plc.GetCompo<CharacterMovement>();
         _attack = plc.GetCompo<PlayerAttack>();
 
         _animator = GetComponent<Animator>();
