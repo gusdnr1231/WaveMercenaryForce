@@ -10,14 +10,14 @@ public class EnemyMoveAction : Action
 
     public float reCalcPeriod = 0.5f;
 
-    private EnemyMovement _movement;
+    private CharacterMovement _movement;
     private float _lastCalcTime;
 
     public override void OnAwake()
     {
         _lastCalcTime = Time.time;
 
-        _movement = Enemy.Value.GetCompo<EnemyMovement>();
+        _movement = Enemy.Value.GetCompo<CharacterMovement>();
     }
 
     public override void OnStart()

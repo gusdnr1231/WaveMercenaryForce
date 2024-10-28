@@ -10,14 +10,14 @@ public class PlayerMoveAction : Action
 
     public float reCalcPeriod = 0.5f;
 
-    private PlayerMovement _movement;
+    private CharacterMovement _movement;
     private float _lastCalcTime;
 
     public override void OnAwake()
     {
         _lastCalcTime = Time.time;
 
-        _movement = Player.Value.GetCompo<PlayerMovement>();
+        _movement = Player.Value.GetCompo<CharacterMovement>();
     }
 
     public override void OnStart()

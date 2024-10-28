@@ -8,11 +8,11 @@ public class PlayerStopAction : Action
 {
     public SharedPCharacter Player;
 
-    private PlayerMovement _movement;
+    private CharacterMovement _movement;
 
     public override void OnStart()
     {
-        if (_movement == null) _movement = Player.Value.GetCompo<PlayerMovement>();
+        if (_movement == null) _movement = Player.Value.GetCompo<CharacterMovement>();
     }
 
     public override TaskStatus OnUpdate()

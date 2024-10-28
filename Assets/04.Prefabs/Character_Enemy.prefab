@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3668573434517276249}
   - component: {fileID: 9007387478358142127}
   - component: {fileID: 4640632019208680672}
-  - component: {fileID: 476775989618327188}
   - component: {fileID: 8936116884156401185}
   - component: {fileID: 1098658220206358201}
+  - component: {fileID: 6179936487048936040}
   - component: {fileID: 8621304262366524439}
   m_Layer: 8
   m_Name: Character_Enemy
@@ -128,18 +128,6 @@ MonoBehaviour:
     mPropertyMapping: 
     mPropertyMappingOwner: {fileID: 0}
     mValue: 0
---- !u!114 &476775989618327188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107535779890438709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78610850dd5262b42825af59dadbe9a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8936116884156401185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +166,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &6179936487048936040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107535779890438709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac025a58c364134ea8ab5e7aeaf6450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &8621304262366524439
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0
+  m_BaseOffset: -0.03
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
 --- !u!1 &8979600453633132949

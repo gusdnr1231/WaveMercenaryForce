@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerCharacter : MonoCharacter, IDamageable
+public class PlayerCharacter : MonoCharacter, IDamageable, ICharacterEvents
 {
     private PlayerCharacterDataSO plcData { get; set; }
 
     #region Event Actions
     public event Action<PlayerCharacterDataSO> OnChangeCharacterData;
-    public event Action OnSetDefaultData;
     public event Action OnResetPool;
+    
     public event Action<float> OnHpChange;
-    public event Action StartCharacter;
-    public event Action OnDeadEvent;
+    public event Action<int> OnSpiritChange;
+
+    // 전투 단계에서 사용할 이벤트들
+    public event Action OnSetDefaultData;
+    public event Action OnStartCharacter;
+    public event Action OnEndCharacter;
     #endregion
 
     #region BT Values
@@ -27,31 +31,6 @@ public class PlayerCharacter : MonoCharacter, IDamageable
     private GameManager mng_Game;
 
     protected Dictionary<Type, IPlayerComponent> _components;
-
-    /*private void Awake()
-    {
-        plcData = CharacterDataBase as PlayerCharacterDataSO;
-
-        _components = new Dictionary<Type, IPlayerComponent>();
-        GetComponentsInChildren<IPlayerComponent>().ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
-
-        _components.Values.ToList().ForEach(compo => compo.Initilize(this));
-
-        _components.Values.ToList().ForEach(compo => compo.AfterInitilize());
-
-        if (_tree == null) _tree = GetComponent<BehaviorTree>();
-        _tree.StartWhenEnabled = true;
-        _tree.PauseWhenDisabled = true;
-
-        _tree.SetVariableValue("plc", this);
-        _tree.SetVariable("isAlive", _isAlive);
-
-        _isAnimationEnd = _tree.GetVariable("isAnimationEnd") as SharedBool;
-        _target = _tree.GetVariable("target") as SharedTransform;
-        _isSpiritMax = _tree.GetVariable("isSpiritMax") as SharedBool;
-
-        _tree.enabled = false;
-    }*/
 
     public T GetCompo<T>() where T : class
     {
@@ -109,11 +88,13 @@ public class PlayerCharacter : MonoCharacter, IDamageable
             _tree.enabled = true;
             SetDefaultData();
 
-            StartCharacter?.Invoke();
+            OnStartCharacter?.Invoke();
         }
         else if (Action == false)
         {
             _tree.enabled = false;
+
+            OnEndCharacter?.Invoke();
         }
     }
 
@@ -182,7 +163,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         _isAlive = false;
         _tree.enabled = false;
 
-        OnDeadEvent?.Invoke();
+        OnEndCharacter?.Invoke();
         Debug.Log($"{this.name} is Dead");
 
         this.gameObject.SetActive(false);
@@ -201,8 +182,12 @@ public class PlayerCharacter : MonoCharacter, IDamageable
         _components = new Dictionary<Type, IPlayerComponent>();
         GetComponentsInChildren<IPlayerComponent>().ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
 
-        _components.Values.ToList().ForEach(compo => compo.Initilize(this));
-
+        _components.Values.ToList().ForEach(compo =>
+        {
+            compo.Initilize(this);
+            Debug.Log(compo.ToString());
+        });
+        
         _components.Values.ToList().ForEach(compo => compo.AfterInitilize());
 
         if (_tree == null) _tree = GetComponent<BehaviorTree>();

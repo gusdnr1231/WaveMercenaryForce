@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EnemyCharacter : MonoCharacter, IDamageable
+public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
 {
     private EnemyCharacterDataSO emcData { get; set; }
 
     #region Event Actions
-    public event Action<EnemyCharacterDataSO> OnChangeCharacterData;
-    public event Action OnSetDefaultData;
+    public event Action<EnemyCharacterDataSO> OnChangeCharacterData;   
     public event Action OnResetPool;
+
     public event Action<float> OnHpChange;
-    public event Action StartCharacter;
-    public event Action OnDeadEvent;
+    public event Action<int> OnSpiritChange;
+
+    // 전투 단계에서 사용할 이벤트들
+    public event Action OnSetDefaultData;
+    public event Action OnStartCharacter;
+    public event Action OnEndCharacter;
     #endregion
 
     #region BT Values
@@ -89,11 +93,13 @@ public class EnemyCharacter : MonoCharacter, IDamageable
             _tree.enabled = true;
             SetDefaultData();
 
-            StartCharacter?.Invoke();
+            OnStartCharacter?.Invoke();
         }
         else if (Action == false)
         {
             _tree.enabled = false;
+
+            OnEndCharacter?.Invoke();
         }
     }
 
@@ -155,7 +161,7 @@ public class EnemyCharacter : MonoCharacter, IDamageable
         _tree.enabled = false;
 
         GameManager.Instance.RemoveRemainEnemy(this);
-        OnDeadEvent?.Invoke();
+        OnEndCharacter?.Invoke();
         Debug.Log($"{this.name} is Dead");
 
         this.gameObject.SetActive(false);

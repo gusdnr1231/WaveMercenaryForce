@@ -6,11 +6,11 @@ public class EnemyStopAction : Action
 {
     public SharedECharacter Enemy;
 
-    private EnemyMovement _movement;
+    private CharacterMovement _movement;
 
     public override void OnStart()
     {
-        if (_movement == null) _movement = Enemy.Value.GetCompo<EnemyMovement>();
+        if (_movement == null) _movement = Enemy.Value.GetCompo<CharacterMovement>();
     }
 
     public override TaskStatus OnUpdate()

@@ -1,36 +1,50 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerMovement : MonoBehaviour, IPlayerComponent
+public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponent
 {
-    private PlayerCharacter _plc;
-    private PlayerAnimator _animator;
+    private MonoCharacter _character;
+    private MonoChacarterAnimator _animator;
     public NavMeshAgent CharacterAgent { get; private set; }
 
     public event Action<Vector3> MoveToDirection;
 
     public void Initilize(PlayerCharacter plc)
     {
-        _plc = plc;
+        _character = plc;
         _animator = plc.GetCompo<PlayerAnimator>();
 
         CharacterAgent = GetComponent<NavMeshAgent>();
 
-        CharacterAgent.enabled = false;
-        SetStop(true);
-        SetVelocity(Vector3.zero);
+        SetStopAgent();
+    }
+
+    public void Initilize(EnemyCharacter emc)
+    {
+        _character = emc;
+        _animator = emc.GetCompo<EnemyAnimator>();
+
+        CharacterAgent = GetComponent<NavMeshAgent>();
+
+        SetStopAgent();
     }
 
     public void AfterInitilize()
     {
-        _plc.OnSetDefaultData += HandleSetDefaultMoveSpeed;
+        if(_character is ICharacterEvents characterEvts)
+        {
+            characterEvts.OnSetDefaultData += HandleSetDefaultMoveSpeed;
 
-        _plc.OnStartCharacter += HandleStartCharacter;
-        _plc.OnEndCharacter += HandleEndCharacter;
+            characterEvts.OnStartCharacter += HandleStartCharacter;
+            characterEvts.OnEndCharacter += HandleEndCharacter;
+        }
+        else
+        {
+            Debug.LogError("Character Event is null! Not Initialize ICharacterEvents");
+        }
     }
 
     private void HandleStartCharacter()
@@ -38,20 +52,19 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
         if (CharacterAgent == null) CharacterAgent = GetComponent<NavMeshAgent>();
 
         CharacterAgent.enabled = true;
+        SetStop(false);
     }
 
     private void HandleEndCharacter()
     {
         if (CharacterAgent == null) CharacterAgent = GetComponent<NavMeshAgent>();
 
-        CharacterAgent.enabled = false;
-        SetStop(true);
-        SetVelocity(Vector3.zero);
+        SetStopAgent();
     }
 
     private void HandleSetDefaultMoveSpeed()
     {
-        CharacterAgent.speed = _plc.characterStat.MoveSpeed.StatValue;
+        CharacterAgent.speed = _character.characterStat.MoveSpeed.StatValue;
     }
 
     public void SetStop(bool isStop) => CharacterAgent.isStopped = isStop;
@@ -71,4 +84,11 @@ public class PlayerMovement : MonoBehaviour, IPlayerComponent
 
     public void SetSpeed(float speed) => CharacterAgent.speed = speed;
     public void SetVelocity(Vector3 velocity) => CharacterAgent.velocity = velocity;
+
+    private void SetStopAgent()
+    {
+        SetStop(true);
+        SetVelocity(Vector3.zero);
+        CharacterAgent.enabled = false;
+    }
 }
