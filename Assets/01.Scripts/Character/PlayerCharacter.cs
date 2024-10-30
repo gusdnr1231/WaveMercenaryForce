@@ -86,9 +86,10 @@ public class PlayerCharacter : MonoCharacter, IDamageable, ICharacterEvents
 
         if (Action == true)
         {
-            _tree.enabled = true;
-            SetDefaultData();
             DefaultLoaction.Position = transform.position;
+
+            SetDefaultData();
+            _tree.enabled = true;
             OnStartCharacter?.Invoke();
         }
         else if (Action == false)
@@ -138,10 +139,12 @@ public class PlayerCharacter : MonoCharacter, IDamageable, ICharacterEvents
 
         ActionHpEvent();
 
+        Debug.Log($"PlayerCharacter {CharacterDataBase.name} [{currentHp}/{CharacterDataBase.StatusData.MaxHp.StatValue}]");
         // »ç¸Á Ã³¸®
-        if (currentHp <= 0)
+        if (currentHp <= 0f)
         {
-            _isAlive = false;
+            Debug.LogError("Active Dead_P");
+            _isAlive.SetValue(false);
         }
     }
 

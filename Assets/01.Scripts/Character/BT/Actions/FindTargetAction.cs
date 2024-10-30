@@ -18,8 +18,8 @@ public class FindTargetAction : Action
 
         if (targetCount == 0)
         {
-            // 타겟을 찾지 못했을 경우 계속 탐색
-            return TaskStatus.Running;
+            // 타겟을 찾지 못했을 경우 실패
+            return TaskStatus.Failure;
         }
 
         // 가장 가까운 타겟 찾기
@@ -29,13 +29,14 @@ public class FindTargetAction : Action
         for (int count = 0; count < targetCount; count++)
         {
             float distance = Vector3.Distance(transform.position, cachedColliders[count].transform.position);
-            if(cachedColliders[count].TryGetComponent(out MonoCharacter character) == false
-                || character._isAlive.Value == false)
-                continue;
-            if (distance < closestDistance)
+            if (cachedColliders[count].TryGetComponent(out MonoCharacter character))
             {
-                closestDistance = distance;
-                closestTarget = cachedColliders[count].transform;
+                if (character._isAlive.Value == false) continue;
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTarget = cachedColliders[count].transform;
+                }
             }
         }
 

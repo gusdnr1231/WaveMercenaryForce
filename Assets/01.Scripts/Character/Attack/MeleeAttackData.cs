@@ -10,6 +10,8 @@ public class MeleeAttackData : AttackData
 
     public override void Execute(MonoCharacter attacker, Transform target)
     {
+        if (target.TryGetComponent(out MonoCharacter _character))
+            if (_character._isAlive.Value == false) return;
         if (target.TryGetComponent(out IDamageable attackTarget))
         {
             if (attacker.characterStat != null)

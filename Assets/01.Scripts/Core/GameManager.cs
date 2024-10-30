@@ -282,9 +282,11 @@ public class GameManager : Manager<GameManager>
     private IEnumerator TimerCoroutine(Phase phase)
     {
         //기다리는 UI 작업은 여기서
+        OnUpdateTimer?.Invoke(0);
         OnActionWait?.Invoke(true);
         yield return new WaitForSeconds(WaitPhaseChangeTime);
         OnActionWait?.Invoke(false);
+        OnUpdateTimer?.Invoke(0);
 
         OnActionBattlePhase?.Invoke(IsStartBattlePhase);
         OnUpdateTimer?.Invoke(RemainTime); // 초기 시간 업데이트
@@ -295,12 +297,11 @@ public class GameManager : Manager<GameManager>
             remainTime--;
             OnUpdateTimer?.Invoke(RemainTime); // 시간 업데이트
 
-            // 전투 중에 모든 적이 제거되면 라운드 종료
-            /*if (phase == Phase.Battle && IsWinRound)
+            if (phase == Phase.Battle && IsWinRound)
             {
                 EndBattlePhase();
                 yield break;
-            }*/
+            }
         }
 
         // 타이머가 끝난 후의 처리

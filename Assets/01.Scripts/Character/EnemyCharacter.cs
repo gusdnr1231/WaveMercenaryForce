@@ -90,9 +90,8 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
 
         if (Action == true)
         {
-            _tree.enabled = true;
             SetDefaultData();
-
+            _tree.enabled = true;
             OnStartCharacter?.Invoke();
         }
         else if (Action == false)
@@ -142,10 +141,12 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
         currentHp -= damageTaken;
         currentHp = Mathf.Clamp(currentHp, 0f, characterStat.MaxHp.StatValue);
 
+        Debug.Log($"EnemyCharacter {CharacterDataBase.name} [{currentHp}/{CharacterDataBase.StatusData.MaxHp.StatValue}]");
+
         // »ç¸Á Ã³¸®
-        if (currentHp <= 0)
+        if (currentHp <= 0f)
         {
-            _isAlive = false;
+            _isAlive.SetValue(false);
         }
     }
 
@@ -161,7 +162,7 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
         OnEndCharacter?.Invoke();
 
         GameManager.Instance.RemoveRemainEnemy(this);
-        Debug.Log($"{this.name} is Dead");
+        Debug.Log($"{this.name} is Dead : [{Time.time}]");
 
         _characterPool.Push(this);
     }

@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PoolType>k__BackingField: {fileID: 11400000, guid: 7b2f3d81b702c0a4fb03c10b5e53aac8, type: 2}
-  <CharacterDataBase>k__BackingField: {fileID: 11400000, guid: aa8d54d5ff99a74438c5c2f60df97608, type: 2}
+  <CharacterDataBase>k__BackingField: {fileID: 0}
   CharacterProficiency: 0
   characterSpirit:
     DefaultSpirit: 0

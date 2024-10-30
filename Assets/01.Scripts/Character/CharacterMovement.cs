@@ -6,7 +6,8 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
 {
     private MonoCharacter _character;
     private MonoChacarterAnimator _animator;
-    public CharacterController Controller { get; private set; }
+    private CharacterController MovementController;
+
     public NavMeshAgent CharacterAgent { get; private set; }
 
     public event Action<Vector3> MoveToDirection;
@@ -17,9 +18,7 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
         _animator = plc.GetCompo<PlayerAnimator>();
 
         CharacterAgent = GetComponent<NavMeshAgent>();
-        Controller = GetComponent<CharacterController>();
-
-        SetStopAgent();
+        MovementController = GetComponent<CharacterController>();
     }
 
     public void Initilize(EnemyCharacter emc)
@@ -28,8 +27,7 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
         _animator = emc.GetCompo<EnemyAnimator>();
 
         CharacterAgent = GetComponent<NavMeshAgent>();
-
-        SetStopAgent();
+        MovementController = GetComponent<CharacterController>();
     }
 
     public void AfterInitilize()
@@ -45,11 +43,13 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
         {
             Debug.LogError("Character Event is null! Not Initialize ICharacterEvents");
         }
+
+        SetStopAgent();
     }
 
     private void HandleStartCharacter()
     {
-        Controller.enabled = true;
+        MovementController.enabled = true;
 
         if (CharacterAgent == null) CharacterAgent = GetComponent<NavMeshAgent>();
         CharacterAgent.enabled = true;
@@ -58,7 +58,7 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
 
     private void HandleEndCharacter()
     {
-        Controller.enabled = false;
+        MovementController.enabled = false;
 
         if (CharacterAgent == null) CharacterAgent = GetComponent<NavMeshAgent>();
         SetStopAgent();
@@ -74,7 +74,7 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
     public void SetStop(bool isStop)
     {
         if(CharacterAgent == null) return;
-        if (CharacterAgent.isOnNavMesh) return;
+        if (CharacterAgent.isOnNavMesh == false) return;
 
         CharacterAgent.isStopped = isStop;
     }
