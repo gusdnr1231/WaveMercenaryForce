@@ -6,5 +6,5 @@ public interface IDamageable
 {
     public void TakeDamage(Stat AttackType, float Value);
     public void TakeHeal(float Value);
-    public void ActiveDead();
+    public void ActiveEnd();
 }

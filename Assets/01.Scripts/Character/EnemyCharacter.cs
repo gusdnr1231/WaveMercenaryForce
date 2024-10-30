@@ -145,7 +145,7 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
         // »ç¸Á Ã³¸®
         if (currentHp <= 0)
         {
-            ActiveDead();
+            _isAlive = false;
         }
     }
 
@@ -155,16 +155,15 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
         currentHp = Mathf.Clamp(currentHp, 0, characterStat.MaxHp.StatValue);
     }
 
-    public void ActiveDead()
+    public void ActiveEnd()
     {
-        _isAlive = false;
         _tree.enabled = false;
+        OnEndCharacter?.Invoke();
 
         GameManager.Instance.RemoveRemainEnemy(this);
-        OnEndCharacter?.Invoke();
         Debug.Log($"{this.name} is Dead");
 
-        this.gameObject.SetActive(false);
+        _characterPool.Push(this);
     }
 
     #endregion

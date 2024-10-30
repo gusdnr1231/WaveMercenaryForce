@@ -29,6 +29,9 @@ public class FindTargetAction : Action
         for (int count = 0; count < targetCount; count++)
         {
             float distance = Vector3.Distance(transform.position, cachedColliders[count].transform.position);
+            if(cachedColliders[count].TryGetComponent(out MonoCharacter character) == false
+                || character._isAlive.Value == false)
+                continue;
             if (distance < closestDistance)
             {
                 closestDistance = distance;

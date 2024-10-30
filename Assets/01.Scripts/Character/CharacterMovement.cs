@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +6,7 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
 {
     private MonoCharacter _character;
     private MonoChacarterAnimator _animator;
+    public CharacterController Controller { get; private set; }
     public NavMeshAgent CharacterAgent { get; private set; }
 
     public event Action<Vector3> MoveToDirection;
@@ -18,6 +17,7 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
         _animator = plc.GetCompo<PlayerAnimator>();
 
         CharacterAgent = GetComponent<NavMeshAgent>();
+        Controller = GetComponent<CharacterController>();
 
         SetStopAgent();
     }
@@ -49,28 +49,40 @@ public class CharacterMovement : MonoBehaviour, IEnemyComponent, IPlayerComponen
 
     private void HandleStartCharacter()
     {
-        if (CharacterAgent == null) CharacterAgent = GetComponent<NavMeshAgent>();
+        Controller.enabled = true;
 
+        if (CharacterAgent == null) CharacterAgent = GetComponent<NavMeshAgent>();
         CharacterAgent.enabled = true;
         SetStop(false);
     }
 
     private void HandleEndCharacter()
     {
-        if (CharacterAgent == null) CharacterAgent = GetComponent<NavMeshAgent>();
+        Controller.enabled = false;
 
+        if (CharacterAgent == null) CharacterAgent = GetComponent<NavMeshAgent>();
         SetStopAgent();
     }
 
     private void HandleSetDefaultMoveSpeed()
     {
+        if (CharacterAgent == null) return;
+
         CharacterAgent.speed = _character.characterStat.MoveSpeed.StatValue;
     }
 
-    public void SetStop(bool isStop) => CharacterAgent.isStopped = isStop;
+    public void SetStop(bool isStop)
+    {
+        if(CharacterAgent == null) return;
+        if (CharacterAgent.isOnNavMesh) return;
+
+        CharacterAgent.isStopped = isStop;
+    }
 
     public void SetDestination(Vector3 destination)
     {
+        if (CharacterAgent == null) return;
+
         if (CharacterAgent.isOnNavMesh)
         {
             CharacterAgent.SetDestination(destination);

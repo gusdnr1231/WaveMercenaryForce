@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerCharacter : MonoCharacter, IDamageable, ICharacterEvents
 {
     private PlayerCharacterDataSO plcData { get; set; }
+    private LocationInfo DefaultLoaction = new LocationInfo(){ Position = Vector3.zero, Rotation = Vector3.zero};
 
     #region Event Actions
     public event Action<PlayerCharacterDataSO> OnChangeCharacterData;
@@ -87,14 +88,12 @@ public class PlayerCharacter : MonoCharacter, IDamageable, ICharacterEvents
         {
             _tree.enabled = true;
             SetDefaultData();
-
+            DefaultLoaction.Position = transform.position;
             OnStartCharacter?.Invoke();
         }
         else if (Action == false)
         {
-            _tree.enabled = false;
-
-            OnEndCharacter?.Invoke();
+            ActiveEnd();
         }
     }
 
@@ -142,7 +141,7 @@ public class PlayerCharacter : MonoCharacter, IDamageable, ICharacterEvents
         // »ç¸Á Ã³¸®
         if (currentHp <= 0)
         {
-            ActiveDead();
+            _isAlive = false;
         }
     }
 
@@ -158,15 +157,11 @@ public class PlayerCharacter : MonoCharacter, IDamageable, ICharacterEvents
         OnHpChange?.Invoke(currentHp);
     }
 
-    public void ActiveDead()
+    public void ActiveEnd()
     {
-        _isAlive = false;
         _tree.enabled = false;
-
+        SetCharacterPosition(DefaultLoaction.Position);
         OnEndCharacter?.Invoke();
-        Debug.Log($"{this.name} is Dead");
-
-        this.gameObject.SetActive(false);
     }
 
     #endregion

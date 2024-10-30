@@ -205,7 +205,6 @@ public class GameManager : Manager<GameManager>
     {
         if (IsStartBattlePhase) return;
         IsStartBattlePhase = true;
-        OnActionBattlePhase?.Invoke(IsStartBattlePhase);
 
         StartBattleTimer();
     }
@@ -214,7 +213,6 @@ public class GameManager : Manager<GameManager>
     {
         if (!IsStartBattlePhase) return;
         IsStartBattlePhase = false;
-        OnActionBattlePhase?.Invoke(IsStartBattlePhase);
 
         if (IsWinRound == false)
         {
@@ -288,6 +286,7 @@ public class GameManager : Manager<GameManager>
         yield return new WaitForSeconds(WaitPhaseChangeTime);
         OnActionWait?.Invoke(false);
 
+        OnActionBattlePhase?.Invoke(IsStartBattlePhase);
         OnUpdateTimer?.Invoke(RemainTime); // 초기 시간 업데이트
 
         while (RemainTime > 0)
