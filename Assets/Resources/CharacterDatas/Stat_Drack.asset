@@ -14,28 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterStatValues:
   - MaxHp: 500
-    Strength: 2
+    Strength: 15
     Magic: 30
-    Defense: 10
-    MagicResistance: 25
+    Defense: 30
+    MagicResistance: 40
     AttackRange: 1.2
-    AttackSpeed: 0.1
+    AttackSpeed: 0.6
     MoveSpeed: 3
-  - MaxHp: 500
-    Strength: 2
+  - MaxHp: 700
+    Strength: 35
     Magic: 30
-    Defense: 10
-    MagicResistance: 25
+    Defense: 55
+    MagicResistance: 60
     AttackRange: 1.2
-    AttackSpeed: 0.1
+    AttackSpeed: 0.6
     MoveSpeed: 3
-  - MaxHp: 500
-    Strength: 2
+  - MaxHp: 1300
+    Strength: 60
     Magic: 30
-    Defense: 10
-    MagicResistance: 25
+    Defense: 70
+    MagicResistance: 70
     AttackRange: 1.2
-    AttackSpeed: 0.1
+    AttackSpeed: 0.6
     MoveSpeed: 3
   MaxHp:
     baseValue: 500

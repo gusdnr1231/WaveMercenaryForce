@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Character_Iren
+  m_Controller: {fileID: 9100000, guid: bdeb447b7575c5846891601481496bfd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c15b8abfa5280bc4a80b71c814b3ee70, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b7e4c59c620d59241a5b6c960daebf7f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4f09829dcb9d8684a859be82e628e77d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 341d76480395fd749ac7463202605152, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9eb6492c73b6c6545b48bea75b0ed241, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6bbf85a76a514f142ab23c96960c0300, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 07f2bf4799bce0e4baebdfb37c750c0e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4fd49f5afb7202b44903027070219992, type: 2}

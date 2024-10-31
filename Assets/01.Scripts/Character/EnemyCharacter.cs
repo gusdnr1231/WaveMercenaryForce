@@ -40,11 +40,6 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
         return default;
     }
 
-    public override void OnAnimationEnd()
-    {
-        base.OnAnimationEnd();
-    }
-
     private void SetDefaultData()
     {
         _isAlive.Value = true;
@@ -52,7 +47,10 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
         characterStat.SetValues(CharacterProficiency);
 
         currentHp = characterStat.MaxHp.StatValue;
+        OnHpChange?.Invoke(currentHp);
+
         characterSpirit.CurrentSpirit = characterSpirit.DefaultSpirit;
+        OnSpiritChange?.Invoke(characterSpirit.CurrentSpirit);
 
         _tree.SetVariableValue("range", characterStat.AttackRange.StatValue);
 
@@ -139,7 +137,7 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
         damageTaken = Mathf.Max(damageTaken, 0f);
 
         currentHp -= damageTaken;
-        currentHp = Mathf.Clamp(currentHp, 0f, characterStat.MaxHp.StatValue);
+        ActionHpEvent();
 
         Debug.Log($"EnemyCharacter {CharacterDataBase.name} [{currentHp}/{CharacterDataBase.StatusData.MaxHp.StatValue}]");
 
@@ -153,7 +151,13 @@ public class EnemyCharacter : MonoCharacter, IDamageable, ICharacterEvents
     public void TakeHeal(float Value)
     {
         currentHp += Value;
+        ActionHpEvent();
+    }
+
+    private void ActionHpEvent()
+    {
         currentHp = Mathf.Clamp(currentHp, 0, characterStat.MaxHp.StatValue);
+        OnHpChange?.Invoke(currentHp);
     }
 
     public void ActiveEnd()

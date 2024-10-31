@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f63c8ad2b336c43967dc9e20699eda, type: 3}
+  m_Name: Stat_Maregal
+  m_EditorClassIdentifier: 
+  CharacterStatValues:
+  - MaxHp: 240
+    Strength: 25
+    Magic: 10
+    Defense: 15
+    MagicResistance: 25
+    AttackRange: 1
+    AttackSpeed: 0.75
+    MoveSpeed: 5
+  - MaxHp: 500
+    Strength: 40
+    Magic: 25
+    Defense: 20
+    MagicResistance: 30
+    AttackRange: 1
+    AttackSpeed: 0.75
+    MoveSpeed: 5
+  - MaxHp: 770
+    Strength: 60
+    Magic: 30
+    Defense: 40
+    MagicResistance: 45
+    AttackRange: 1
+    AttackSpeed: 0.75
+    MoveSpeed: 5
+  MaxHp:
+    baseValue: 100
+    statType: 0
+  Strength:
+    baseValue: 20
+    statType: 1
+  Magic:
+    baseValue: 10
+    statType: 2
+  Defense:
+    baseValue: 14
+    statType: 3
+  MagicResistance:
+    baseValue: 14
+    statType: 4
+  AttackRange:
+    baseValue: 0.5
+    statType: 5
+  AttackSpeed:
+    baseValue: 0.6
+    statType: 6
+  MoveSpeed:
+    baseValue: 5
+    statType: 7

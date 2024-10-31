@@ -24,4 +24,4 @@ MonoBehaviour:
     CurrentSpirit: 0
     MaxSpirit: 60
   CharacterAnimator: {fileID: 22100000, guid: 359051e334e169743a549357ca9c4c8e, type: 2}
-  CharacterAlias: "\uBCF4\uCD08\uBCD1"
+  CharacterAlias: "\uD574\uBCC0\uC758 \uBCF4\uCD08"

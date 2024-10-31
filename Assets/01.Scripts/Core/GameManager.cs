@@ -70,9 +70,7 @@ public class GameManager : Manager<GameManager>
     protected override void Awake()
     {
         base.Awake();
-
-        if(_poolManager != null) _poolManager.InitializePool(PoolParentObj.transform);
-
+        _poolManager?.InitializePool(PoolParentObj.transform);
         GoldChangeToFixed(0);
     }
 
@@ -82,54 +80,39 @@ public class GameManager : Manager<GameManager>
         SetLevel();
 
         CharacterManager.Instance.CreateEnemyCharacter += AddRemainEnemy;
-
         DeployCharacters = new List<PlayerCharacter>();
         RemainEnemys = new List<EnemyCharacter>();
-        
+
         OnActionBattlePhase?.Invoke(IsStartBattlePhase);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) StartSettingTimer();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PauseGame(true);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            PauseGame(false);
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            GoldChangeToValue(10);
-        }
+        if (Input.GetKeyDown(KeyCode.Space)) PauseGame(true);
+        if (Input.GetKeyDown(KeyCode.LeftShift)) PauseGame(false);
+        if (Input.GetKeyDown(KeyCode.G)) GoldChangeToValue(10);
     }
 
     #region Gold Methods
 
     public bool CanUseGold(int useValue) => CollectGold - useValue >= 0;
-    
+
     public void GoldChangeToFixed(int fixedValue)
     {
         if (fixedValue < 0) return;
-        CollectGold = fixedValue;
-        CollectGold = Mathf.Clamp(CollectGold, 0, MaxCollectGold);
+        CollectGold = Mathf.Clamp(fixedValue, 0, MaxCollectGold);
         OnChangeGold?.Invoke(CollectGold);
     }
 
     public bool GoldChangeToValue(int changeValue)
     {
-        // 바뀌는 값이 음수일 때, 소모한 이후 값이 0보다 작을 경우 실행하지 않음
-        if (changeValue < 0 && !CanUseGold(-changeValue)) // 골드가 충분한지 확인
+        if (changeValue < 0 && !CanUseGold(-changeValue))
         {
             return false;
         }
-
-        CollectGold += changeValue;
-        CollectGold = Mathf.Clamp(CollectGold, 0, MaxCollectGold);
+        CollectGold = Mathf.Clamp(CollectGold + changeValue, 0, MaxCollectGold);
         OnChangeGold?.Invoke(CollectGold);
-
         return true;
     }
 
@@ -150,9 +133,7 @@ public class GameManager : Manager<GameManager>
         {
             CurrentExp -= CurrentNeedExp;
             BuildingLevel += 1;
-
             MaxDeployCount += IncreaseDeployCount;
-
             SetLevel();
         }
     }
@@ -170,14 +151,12 @@ public class GameManager : Manager<GameManager>
 
     public void AddDeployCharacters(PlayerCharacter add)
     {
-        Debug.Log(add.CharacterDataBase.name);
         DeployCharacters.Add(add);
         OnActionBattlePhase += add.HandleStartBattlePhase;
     }
 
     public void RemoveDeployCharacters(PlayerCharacter remove)
     {
-        Debug.Log(remove.CharacterDataBase.name);
         OnActionBattlePhase -= remove.HandleStartBattlePhase;
         DeployCharacters.Remove(remove);
     }
@@ -201,11 +180,10 @@ public class GameManager : Manager<GameManager>
     private Phase GamePhase = Phase.Setting;
     private bool IsStartBattlePhase = false;
 
-    public void StarBattlePhase()
+    public void StartBattlePhase()
     {
         if (IsStartBattlePhase) return;
         IsStartBattlePhase = true;
-
         StartBattleTimer();
     }
 
@@ -214,10 +192,10 @@ public class GameManager : Manager<GameManager>
         if (!IsStartBattlePhase) return;
         IsStartBattlePhase = false;
 
-        if (IsWinRound == false)
+        if (!IsWinRound)
         {
             playerHp -= 1;
-            if(playerHp <= 0)
+            if (playerHp <= 0)
             {
                 EndGame();
                 return;
@@ -233,12 +211,12 @@ public class GameManager : Manager<GameManager>
 
         if (pause)
         {
-            if(timerCrt != null) StopCoroutine(timerCrt);
+            if (timerCrt != null) StopCoroutine(timerCrt);
             timerCrt = null;
         }
         else
         {
-            timerCrt = StartCoroutine(ResumeTimer(GamePhase));
+            timerCrt = StartCoroutine(TimerCoroutine(GamePhase, true));
         }
     }
 
@@ -279,24 +257,30 @@ public class GameManager : Manager<GameManager>
     /// 타이머 실행
     /// </summary>
     /// <param name="phase">현재 게임 진행 상황을 받아와, 끝났을 경우 알맞은 이벤트를 실행</param>
-    private IEnumerator TimerCoroutine(Phase phase)
+    /// <param name="isResuming">일시 중지 후 재개인지 여부</param>
+    private IEnumerator TimerCoroutine(Phase phase, bool isResuming = false)
     {
-        //기다리는 UI 작업은 여기서
-        OnUpdateTimer?.Invoke(0);
-        OnActionWait?.Invoke(true);
-        yield return new WaitForSeconds(WaitPhaseChangeTime);
-        OnActionWait?.Invoke(false);
-        OnUpdateTimer?.Invoke(0);
+        // 대기 UI 작업은 여기서 수행
+        if (!isResuming)
+        {
+            OnUpdateTimer?.Invoke(0);
+            OnActionWait?.Invoke(true);
+            yield return new WaitForSeconds(WaitPhaseChangeTime);
+            OnActionWait?.Invoke(false);
+        }
 
+        // 페이즈 전환 후 초기 타이머 설정 및 이벤트 호출
         OnActionBattlePhase?.Invoke(IsStartBattlePhase);
         OnUpdateTimer?.Invoke(RemainTime); // 초기 시간 업데이트
 
+        // 남은 시간이 0이 될 때까지 타이머 실행
         while (RemainTime > 0)
         {
             yield return new WaitForSeconds(1f);
             remainTime--;
             OnUpdateTimer?.Invoke(RemainTime); // 시간 업데이트
 
+            // 전투 중 모든 적이 제거되면 라운드 종료
             if (phase == Phase.Battle && IsWinRound)
             {
                 EndBattlePhase();
@@ -308,42 +292,7 @@ public class GameManager : Manager<GameManager>
         if (phase == Phase.Setting)
         {
             // 설정 시간이 끝나면 전투 시작
-            StarBattlePhase();
-        }
-        else if (phase == Phase.Battle)
-        {
-            // 전투 시간이 끝나면 라운드 종료
-            EndBattlePhase();
-        }
-    }
-
-    /// <summary>
-    /// 타이머가 실행 중, 중단 되었을 경우 실행
-    /// </summary>
-    /// <param name="phase">현재 게임 진행 상황을 받아와, 끝났을 경우 알맞은 이벤트를 실행</param>
-    private IEnumerator ResumeTimer(Phase phase)
-    {
-        OnUpdateTimer?.Invoke(RemainTime); // 초기 시간 업데이트
-
-        while (RemainTime > 0)
-        {
-            yield return new WaitForSeconds(1f);
-            remainTime--;
-            OnUpdateTimer?.Invoke(RemainTime); // 시간 업데이트
-
-            // 전투 중에 모든 적이 제거되면 라운드 종료
-            if (phase == Phase.Battle && IsWinRound)
-            {
-                EndBattlePhase();
-                yield break;
-            }
-        }
-
-        // 타이머가 끝난 후의 처리
-        if (phase == Phase.Setting)
-        {
-            // 설정 시간이 끝나면 전투 시작
-            StarBattlePhase();
+            StartBattlePhase();
         }
         else if (phase == Phase.Battle)
         {

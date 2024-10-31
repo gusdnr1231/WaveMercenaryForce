@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: "\uC774\uB80C"
   CharacterSprite: {fileID: -815735373, guid: cb5cfbea979b510408d4223455726f0a, type: 3}
-  StatusData: {fileID: 11400000, guid: faf9bfb7037a25e40b8b2299669fdeb6, type: 2}
-  TypeData: 2
+  StatusData: {fileID: 11400000, guid: 00ea89b14c8c9ba43bde97aa2a177bce, type: 2}
+  TypeData: 1
   CharacterGrade: 4
   CharacterAttack: {fileID: 11400000, guid: 0a07b12943957da4da7bc65e1e87f8c0, type: 2}
   CharacterSkill: {fileID: 11400000, guid: 0a07b12943957da4da7bc65e1e87f8c0, type: 2}
   <CharacterSpirit>k__BackingField:
-    DefaultSpirit: 10
+    DefaultSpirit: 0
     CurrentSpirit: 0
-    MaxSpirit: 80
-  CharacterAnimator: {fileID: 22100000, guid: 359051e334e169743a549357ca9c4c8e, type: 2}
-  CharacterAlias: "\uC131\uC804\uC0AC"
+    MaxSpirit: 70
+  CharacterAnimator: {fileID: 22100000, guid: 9bff86851ca5d1541ba799780ea83f8f, type: 2}
+  CharacterAlias: "\uBD81\uBD80\uC758 \uC5EC\uC804\uC0AC"

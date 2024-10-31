@@ -10,6 +10,7 @@ public class InDistanceCondition : Conditional
 
     public override TaskStatus OnUpdate()
     {
+        if (Target.Value == null) return TaskStatus.Failure;
         Vector3 position = Target.Value.position;
 
         float distance = Vector3.Distance(position, transform.position);
