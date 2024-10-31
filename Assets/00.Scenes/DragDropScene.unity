@@ -282,7 +282,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 172306258}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StarBattlePhase
+        m_MethodName: StartBattlePhase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

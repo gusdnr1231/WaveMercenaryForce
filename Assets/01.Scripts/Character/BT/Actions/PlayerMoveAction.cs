@@ -24,7 +24,7 @@ public class PlayerMoveAction : Action
     {
         _movement.SetStop(false);
         _movement.SetSpeed(Player.Value.characterStat.MoveSpeed.StatValue);
-        _movement.SetDestination(TargetTrm.Value.position);
+        if(TargetTrm.Value != null) _movement.SetDestination(TargetTrm.Value.position);
     }
 
     public override TaskStatus OnUpdate()

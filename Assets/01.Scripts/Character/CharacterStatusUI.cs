@@ -55,15 +55,15 @@ public class CharacterStatusUI : MonoBehaviour, IPlayerComponent, IEnemyComponen
         }
     }
 
+    /*
     private void Update()
     {
-        Vector3 direction = transform.position - _mainCam.transform.position;
-        direction.y = 0; // y축 회전 제거
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        Quaternion targetRotation = Quaternion.LookRotation(transform.position - _mainCam.transform.position);
 
         // x축만 업데이트하도록 설정
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, targetRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(targetRotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
     }
+    */
 
     private void HandleVisiableStatisUI(bool isVisiable)
     {
@@ -84,12 +84,14 @@ public class CharacterStatusUI : MonoBehaviour, IPlayerComponent, IEnemyComponen
 
     private void HandleHpBarFill(float amount)
     {
+        if(HpImage ==  null) return;
         float targetFillAmount = amount / characterMaxHp;
         HpImage.DOFillAmount(targetFillAmount, 0.1f).SetEase(Ease.OutCirc);
     }
 
     private void HandleSpiritBarFill(int amount)
     {
+        if(SpiritImage ==  null) return;
         float targetFillAmount = (float)amount / characterSpiritInfo.MaxSpirit;
         SpiritImage.DOFillAmount(targetFillAmount, 0.1f).SetEase(Ease.OutCirc);
     }
