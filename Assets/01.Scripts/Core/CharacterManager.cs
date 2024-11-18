@@ -76,13 +76,20 @@ public class CharacterManager : Manager<CharacterManager>
         return false;
     }
 
-    public bool RemoveCharacterToSeat(int count)
+    public bool RemoveCharacterToSeat(PlayerCharacter removeCharacter)
     {
-        if (count > MaxSeatCount || count < 0 || SeatPair[count] == null) return false;
-
-        SeatPair[count] = null;
-        CurrentReaminSeatCount++;
-
-        return true;
+        for (int i = 0; i < MaxSeatCount; i++)
+        {
+            if (SeatPair[i] == removeCharacter)
+            {
+                SeatPair[i] = null;
+                CurrentReaminSeatCount++;
+                Debug.Log($"Character {removeCharacter.CharacterDataBase.name} removed from seat {i}");
+                return true;
+            }
+        }
+        Debug.Log("Character not found in any seat.");
+        return false;
     }
+
 }

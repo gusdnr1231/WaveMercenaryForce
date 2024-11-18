@@ -19,6 +19,8 @@ public class GameManager : Manager<GameManager>
     [SerializeField] private PoolManagerSO _poolManager;
     [SerializeField] private GameObject PoolParentObj;
     private bool IsCompletePoolInitialize => _poolManager.IsCompleteInitialize;
+    [Header("Game Event Channel")]
+    [SerializeField] private GameEventChannelSO InGameEventChannel;
 
     [Header("플레이어 관련 수치")]
     [SerializeField][Range(1, 10)] private int PlayerMaxHp = 5;
@@ -102,6 +104,8 @@ public class GameManager : Manager<GameManager>
     {
         if (fixedValue < 0) return;
         CollectGold = Mathf.Clamp(fixedValue, 0, MaxCollectGold);
+        /*var evt = GameValueEvents.ChangeGoldValue;
+        evt.currentGold = CollectGold;*/
         OnChangeGold?.Invoke(CollectGold);
     }
 
